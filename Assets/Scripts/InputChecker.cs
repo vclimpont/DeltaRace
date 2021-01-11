@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Assertions;
 
 public class InputChecker
 {
@@ -29,7 +30,8 @@ public class InputChecker
                 throw new System.Exception("Player is diving with no inputs triggered");
             }
 
-            HorizontalMovement = Mathf.Abs(touchPosition.x - centerX);
+            Assert.AreNotEqual(centerX, 0);
+            HorizontalMovement = Mathf.Abs(touchPosition.x - centerX) / centerX;
         }
     }
 }
