@@ -25,8 +25,8 @@ public class PlayerController : MonoBehaviour
     void Awake()
     {
         rb = GetComponent<Rigidbody>();
+        ac = GetComponent<PlayerAnimationController>();
         ic = new InputChecker();
-        ac = new PlayerAnimationController();
 
         minSpeedY = minSpeed;
         maxSpeedY = maxSpeed / 2;
@@ -36,12 +36,18 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        ac.StretchOnVelocityValue(baseScale, minSpeed, maxSpeed);
+
+        if(isPropelled)
+        {
+            return;
+        }
+
         ic.CheckDive();
         ic.CheckHorizontalMovement(transform.position);
 
-        Vector3 v = rb.velocity;
-        transform.rotation = ac.RotateOnVelocityValue(v);
-        transform.localScale = ac.StretchOnVelocityValue(baseScale, v, minSpeed, maxSpeed);
+        ac.RotateOnVelocityValue();
+
     }
 
     void FixedUpdate()
@@ -86,10 +92,14 @@ public class PlayerController : MonoBehaviour
     IEnumerator PropulsionTimeCounter()
     {
         isPropelled = true;
-        Debug.Log(isPropelled);
         yield return new WaitForSeconds(propulsionTimer);
         isPropelled = false;
-        Debug.Log(isPropelled);
+    }
+
+    public void StartPropelling()
+    {
+        ac.PlayBoostAnimation(propulsionTimer);
+        isPropelled = true;
     }
 
     public void SetPropulsion()
