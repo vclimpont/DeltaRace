@@ -6,7 +6,7 @@ public class PlayerAnimationController
 {
     public Quaternion RotateOnVelocityValue(Vector3 v)
     {
-        return Quaternion.Euler(-v.y * 2f, 0, -v.x * 2f);
+        return Quaternion.Euler(-v.y, 0, -v.x);
     }
 
     public Vector3 StretchOnVelocityValue(Vector3 baseScale, Vector3 v, float minSpeed, float maxSpeed)

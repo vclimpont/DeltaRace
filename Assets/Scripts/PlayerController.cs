@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float diveSpeedFactor = 0;
     [SerializeField] private float turnSpeed = 0;
     [SerializeField] private float turnReleaseSpeedFactor = 0;
+    [SerializeField] private float propulsionTimer = 0;
 
     private Rigidbody rb;
     private InputChecker ic;
@@ -18,6 +19,8 @@ public class PlayerController : MonoBehaviour
     private float minSpeedY;
     private float maxSpeedY;
     private Vector3 baseScale;
+
+    private bool isPropelled;
 
     void Awake()
     {
@@ -43,6 +46,11 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
+        if(isPropelled)
+        {
+            return;
+        }
+
         if(!ic.IsDiving)
         {
             Release();
@@ -73,5 +81,20 @@ public class PlayerController : MonoBehaviour
         float z = v.z >= maxSpeed ? maxSpeed : v.z + diveSpeedFactor;
 
         rb.velocity = new Vector3(x, y, z);
+    }
+
+    IEnumerator PropulsionTimeCounter()
+    {
+        isPropelled = true;
+        Debug.Log(isPropelled);
+        yield return new WaitForSeconds(propulsionTimer);
+        isPropelled = false;
+        Debug.Log(isPropelled);
+    }
+
+    public void SetPropulsion()
+    {
+        StopCoroutine(PropulsionTimeCounter());
+        StartCoroutine(PropulsionTimeCounter());
     }
 }

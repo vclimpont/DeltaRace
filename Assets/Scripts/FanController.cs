@@ -6,7 +6,7 @@ public class FanController : MonoBehaviour
 {
     [SerializeField] private Transform fanMeshTransform = null;
     [SerializeField] private Transform anchorPoint = null;
-    [SerializeField] private float maxWindForce = 10f;
+    [SerializeField] private float maxWindForce = 300f;
 
     private Vector3 windDirection;
 
@@ -18,18 +18,20 @@ public class FanController : MonoBehaviour
 
     void PropelPlayer(Vector3 playerPosition, Rigidbody rb)
     {
-        float dist = Mathf.Abs(playerPosition.y - anchorPoint.position.y);
-        Debug.Log(dist);
+        //float dist = Mathf.Abs(playerPosition.y - anchorPoint.position.y);
+        //Debug.Log(dist);
 
-        float dtForce = maxWindForce * (10f - dist);
-        rb.AddForce(dtForce * windDirection, ForceMode.VelocityChange);
+        //float dtForce = maxWindForce * (10f - dist);
+        rb.AddForce(maxWindForce * windDirection, ForceMode.Force);
     }
 
-    private void OnTriggerEnter(Collider collider)
+    private void OnTriggerStay(Collider collider)
     {
         if(collider.CompareTag("Player"))
         {
-            PropelPlayer(collider.transform.position, collider.GetComponent<Rigidbody>());
+            PlayerController playerController = collider.GetComponent<PlayerController>();
+            playerController.SetPropulsion();
+            PropelPlayer(collider.transform.position, collider.attachedRigidbody);
         }
     }
 }
