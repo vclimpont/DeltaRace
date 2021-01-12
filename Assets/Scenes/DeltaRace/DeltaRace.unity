@@ -2546,7 +2546,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerTransform: {fileID: 864736827}
-  stiffnessFactor: 0.2
+  stiffnessFactor: 0.12
 --- !u!4 &1217613426 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8308807190946996424, guid: 0b1d2145b8137cd46b27ea9a578400f3,
@@ -4662,6 +4662,16 @@ PrefabInstance:
       propertyPath: propulsionReleaseTimer
       value: 0.3
       objectReference: {fileID: 0}
+    - target: {fileID: 1574937752325411043, guid: 3e37f154b3eea95498fee0081a4e2e31,
+        type: 3}
+      propertyPath: maxShineIntensity
+      value: 0.776
+      objectReference: {fileID: 0}
+    - target: {fileID: 2514563581553235898, guid: 3e37f154b3eea95498fee0081a4e2e31,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: bd2d742ee2ce7a740ae0cf992a38be74, type: 2}
     - target: {fileID: 2978350832378598036, guid: 3e37f154b3eea95498fee0081a4e2e31,
         type: 3}
       propertyPath: m_Enabled

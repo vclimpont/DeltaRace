@@ -4,12 +4,16 @@ using UnityEngine;
 
 public class PlayerAnimationController : MonoBehaviour
 {
+    [SerializeField][Range(0.01f, 1f)] private float maxShineIntensity = 0.01f;
+
     private Rigidbody rb;
     private float boostAnimationCooldown;
+    private MeshRenderer mesh;
 
     void Awake()
     {
         rb = GetComponent<Rigidbody>();
+        mesh = GetComponent<MeshRenderer>();
         boostAnimationCooldown = 0f;
     }
 
@@ -26,6 +30,15 @@ public class PlayerAnimationController : MonoBehaviour
         Vector3 v = rb.velocity;
         float s = (v.z - minSpeed) / (maxSpeed - minSpeed);
         transform.localScale = baseScale + new Vector3(-s * 0.5f, 0, 0.3f * s);
+    }
+
+    public void ShineOnVelocityValue(float minSpeed, float maxSpeed)
+    {
+        float speed = rb.velocity.magnitude;
+        float dtI = (speed - minSpeed) / ((maxSpeed - minSpeed) / maxShineIntensity);
+        Debug.Log(dtI);
+        Color matColor = mesh.material.color;
+        mesh.material.SetColor("_EmissionColor", matColor * dtI);
     }
 
     public void PlayBoostAnimation(float animationTime)

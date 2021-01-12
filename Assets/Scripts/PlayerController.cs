@@ -37,6 +37,7 @@ public class PlayerController : MonoBehaviour
     {
         ac.StretchOnVelocityValue(baseScale, minSpeedZ, maxSpeedZ);
         ac.RotateOnVelocityValue(!isPropelled);
+        ac.ShineOnVelocityValue(minSpeedZ, maxSpeedZ);
 
         if(isPropelled)
         {
