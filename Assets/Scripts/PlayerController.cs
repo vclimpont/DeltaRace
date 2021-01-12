@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    [SerializeField] private CameraController cameraController = null;
+
+    [Header("Physics Settings")]
     [SerializeField] private float minSpeedZ = 0;
     [SerializeField] private float maxSpeedZ = 0;
     [SerializeField] private float minSpeedY = 0;
@@ -121,6 +124,7 @@ public class PlayerController : MonoBehaviour
         rb.velocity = new Vector3(v.x, v.y, v.z / 2f);
 
         ac.PlayBoostAnimation(propulsionTimer);
+        cameraController.Shake();
         isPropelled = true;
     }
 
@@ -134,5 +138,10 @@ public class PlayerController : MonoBehaviour
     {
         StopCoroutine(PropulsionTimeCounter());
         StartCoroutine(PropulsionTimeCounter());
+    }
+
+    void OnCollisionEnter(Collision coll)
+    {
+        cameraController.Shake();
     }
 }

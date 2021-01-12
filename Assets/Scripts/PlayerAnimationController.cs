@@ -36,7 +36,7 @@ public class PlayerAnimationController : MonoBehaviour
     {
         float speed = rb.velocity.magnitude;
         float dtI = (speed - minSpeed) / ((maxSpeed - minSpeed) / maxShineIntensity);
-        Debug.Log(dtI);
+
         Color matColor = mesh.material.color;
         mesh.material.SetColor("_EmissionColor", matColor * dtI);
     }
