@@ -36,7 +36,7 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         ac.StretchOnVelocityValue(baseScale, minSpeedZ, maxSpeedZ);
-        ac.RotateOnVelocityValue();
+        ac.RotateOnVelocityValue(!isPropelled);
 
         if(isPropelled)
         {
@@ -111,7 +111,6 @@ public class PlayerController : MonoBehaviour
         }
 
         isPropelled = false;
-        Debug.Log("release");
         yield return null;
     }
 

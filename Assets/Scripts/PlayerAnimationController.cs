@@ -5,26 +5,20 @@ using UnityEngine;
 public class PlayerAnimationController : MonoBehaviour
 {
     private Rigidbody rb;
-    private bool boostAnimationEnded;
     private float boostAnimationCooldown;
 
     void Awake()
     {
         rb = GetComponent<Rigidbody>();
-        boostAnimationEnded = true;
         boostAnimationCooldown = 0f;
     }
 
-    public void RotateOnVelocityValue()
+    public void RotateOnVelocityValue(bool rotateX = true)
     {
-        //if(!boostAnimationEnded)
-        //{
-        //    return;
-        //}
-
         Vector3 v = rb.velocity;
         float rY = Mathf.Clamp(-v.y * 2, -90f, 90f);
-        transform.rotation = Quaternion.Euler(rY, 0, transform.rotation.eulerAngles.z);
+        float rX = rotateX ? Mathf.Clamp(-v.x * 2, -90f, 90f) : transform.rotation.eulerAngles.z;
+        transform.rotation = Quaternion.Euler(rY, 0, rX);
     }
 
     public void StretchOnVelocityValue(Vector3 baseScale, float minSpeed, float maxSpeed)
@@ -57,7 +51,6 @@ public class PlayerAnimationController : MonoBehaviour
             yield return null;
         }
 
-        boostAnimationEnded = false;
         float dt = 0;
         while(dt <= animationTime)
         {
@@ -70,7 +63,6 @@ public class PlayerAnimationController : MonoBehaviour
         }
 
         transform.rotation = Quaternion.Euler(0, 0, 0);
-        boostAnimationEnded = true;
         yield return null;
     }
 
