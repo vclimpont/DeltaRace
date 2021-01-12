@@ -38,4 +38,13 @@ public class FanController : MonoBehaviour
             PropelPlayer(collider.transform.position, collider.attachedRigidbody);
         }
     }
+
+    private void OnTriggerExit(Collider collider)
+    {
+        if (collider.CompareTag("Player"))
+        {
+            PlayerController playerController = collider.GetComponent<PlayerController>();
+            playerController.PropulsionStun();
+        }
+    }
 }
