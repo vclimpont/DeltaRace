@@ -17,20 +17,21 @@ public class PlayerAnimationController : MonoBehaviour
 
     public void RotateOnVelocityValue()
     {
-        if(!boostAnimationEnded)
-        {
-            return;
-        }
+        //if(!boostAnimationEnded)
+        //{
+        //    return;
+        //}
 
         Vector3 v = rb.velocity;
-        transform.rotation = Quaternion.Euler(-v.y * 2, 0, -v.x * 2);
+        float rY = Mathf.Clamp(-v.y * 2, -90f, 90f);
+        transform.rotation = Quaternion.Euler(rY, 0, transform.rotation.eulerAngles.z);
     }
 
     public void StretchOnVelocityValue(Vector3 baseScale, float minSpeed, float maxSpeed)
     {
         Vector3 v = rb.velocity;
-        float s = (v.z - minSpeed) / (2 * (maxSpeed - minSpeed));
-        transform.localScale = baseScale + new Vector3(-s, 0, s);
+        float s = (v.z - minSpeed) / (maxSpeed - minSpeed);
+        transform.localScale = baseScale + new Vector3(-s * 0.5f, 0, 0.3f * s);
     }
 
     public void PlayBoostAnimation(float animationTime)
@@ -45,11 +46,11 @@ public class PlayerAnimationController : MonoBehaviour
         Vector3 currentEulerRotation = transform.rotation.eulerAngles;
         bool right = currentEulerRotation.z > 180;
 
-        StopCoroutine(BoostAnimation(currentEulerRotation, 0.5f, right));
-        StartCoroutine(BoostAnimation(currentEulerRotation, 0.5f, right));
+        StopCoroutine(BoostAnimation(0.5f, right));
+        StartCoroutine(BoostAnimation(0.5f, right));
     }
 
-    IEnumerator BoostAnimation(Vector3 startEulerAngles, float animationTime, bool right = true)
+    IEnumerator BoostAnimation(float animationTime, bool right = true)
     {
         if(animationTime == 0)
         {
@@ -60,14 +61,15 @@ public class PlayerAnimationController : MonoBehaviour
         float dt = 0;
         while(dt <= animationTime)
         {
+            dt += Time.deltaTime;
             float side = right ? -1 : 1;
             float dtZ = Mathf.Lerp(0, side * 360f, dt / animationTime);
             transform.rotation = Quaternion.Euler(0, 0, dtZ);
-            dt += Time.deltaTime;
 
             yield return new WaitForEndOfFrame();
         }
 
+        transform.rotation = Quaternion.Euler(0, 0, 0);
         boostAnimationEnded = true;
         yield return null;
     }

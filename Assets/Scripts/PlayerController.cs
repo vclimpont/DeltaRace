@@ -36,6 +36,7 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         ac.StretchOnVelocityValue(baseScale, minSpeedZ, maxSpeedZ);
+        ac.RotateOnVelocityValue();
 
         if(isPropelled)
         {
@@ -45,7 +46,6 @@ public class PlayerController : MonoBehaviour
         ic.CheckDive();
         ic.CheckHorizontalMovement(transform.position);
 
-        ac.RotateOnVelocityValue();
     }
 
     void FixedUpdate()
@@ -105,9 +105,9 @@ public class PlayerController : MonoBehaviour
 
             Vector3 v = rb.velocity;
             rb.velocity = new Vector3(v.x, dtY, v.z);
-            dt += Time.fixedDeltaTime;
+            dt += Time.deltaTime;
 
-            yield return new WaitForFixedUpdate();
+            yield return new WaitForEndOfFrame();
         }
 
         isPropelled = false;
