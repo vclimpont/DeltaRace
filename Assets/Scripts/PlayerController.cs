@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField] private float minSpeed;
-    [SerializeField] private float maxSpeed;
-    [SerializeField] private float releaseSpeedFactor;
-    [SerializeField] private float diveSpeedFactor;
-    [SerializeField] private float turnSpeed;
-    [SerializeField] private float turnReleaseSpeedFactor;
+    [SerializeField] private float minSpeed = 0;
+    [SerializeField] private float maxSpeed = 0;
+    [SerializeField] private float releaseSpeedFactor = 0;
+    [SerializeField] private float diveSpeedFactor = 0;
+    [SerializeField] private float turnSpeed = 0;
+    [SerializeField] private float turnReleaseSpeedFactor = 0;
 
     private Rigidbody rb;
     private InputChecker ic;
@@ -22,14 +22,15 @@ public class PlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         ic = new InputChecker();
 
-        minSpeedY = minSpeed / 2;
+        minSpeedY = minSpeed;
         maxSpeedY = maxSpeed / 2;
     }
 
     // Update is called once per frame
     void Update()
     {
-        ic.CheckInputs();
+        ic.CheckDive();
+        ic.CheckHorizontalMovement(transform.position);
     }
 
     void FixedUpdate()
@@ -48,21 +49,21 @@ public class PlayerController : MonoBehaviour
     {
         Vector3 v = rb.velocity;
 
-        //float x = Mathf.Clamp(v.x + turnReleaseSpeedFactor, 0, turnSpeed);
+        float x = v.x - (turnReleaseSpeedFactor * v.x);
         float y = v.y >= minSpeedY ? minSpeedY : v.y + releaseSpeedFactor;
         float z = v.z <= minSpeed ? minSpeed : v.z - releaseSpeedFactor;
 
-        rb.velocity = new Vector3(0, y, z);
+        rb.velocity = new Vector3(x, y, z);
     }
 
     void Dive()
     {
         Vector3 v = rb.velocity;
 
-        //float x = Mathf.Clamp(v.x + ic.HorizontalMovement * turnSpeed, 0, turnSpeed);
+        float x = ic.HorizontalMovement * turnSpeed;
         float y = v.y <= -maxSpeedY ? -maxSpeedY : v.y - diveSpeedFactor;
         float z = v.z >= maxSpeed ? maxSpeed : v.z + diveSpeedFactor;
 
-        rb.velocity = new Vector3(0, y, z);
+        rb.velocity = new Vector3(x, y, z);
     }
 }
