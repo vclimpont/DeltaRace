@@ -45,7 +45,7 @@ GameObject:
   - component: {fileID: 897168147860512921}
   m_Layer: 0
   m_Name: Fan
-  m_TagString: Untagged
+  m_TagString: Fan
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -91,7 +91,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fanMeshTransform: {fileID: 2047126258883147650}
-  maxWindForce: 200
+  maxWindForce: 400
 --- !u!95 &5137395464290573900
 Animator:
   serializedVersion: 3
