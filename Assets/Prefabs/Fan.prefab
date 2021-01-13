@@ -91,7 +91,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fanMeshTransform: {fileID: 2047126258883147650}
-  maxWindForce: 1000
+  maxWindForce: 200
 --- !u!95 &5137395464290573900
 Animator:
   serializedVersion: 3

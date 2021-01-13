@@ -20,7 +20,7 @@ public class PlayerAnimationController : MonoBehaviour
     public void RotateOnVelocityValue(bool rotateX = true)
     {
         Vector3 v = rb.velocity;
-        float rY = Mathf.Clamp(-v.y * 2, -90f, 90f);
+        float rY = Mathf.Clamp(-v.y * 2, -90f, 60f);
         float rX = rotateX ? Mathf.Clamp(-v.x * 2, -90f, 90f) : transform.rotation.eulerAngles.z;
         transform.rotation = Quaternion.Euler(rY, 0, rX);
     }
