@@ -48,7 +48,7 @@ public class PlayerController : MonoBehaviour
         }
 
         ic.CheckDive();
-        //ic.CheckHorizontalMovement(transform.position);
+        ic.CheckHorizontalMovement(transform.position);
     }
 
     void FixedUpdate()
@@ -72,20 +72,22 @@ public class PlayerController : MonoBehaviour
     {
         Vector3 v = rb.velocity;
 
+        float x = v.x - (turnReleaseSpeedFactor * v.x);
         float y = v.y >= minSpeedY ? minSpeedY : v.y + releaseSpeedFactor;
         float z = v.z <= minSpeedZ ? minSpeedZ : v.z - releaseSpeedFactor;
 
-        rb.velocity = new Vector3(0, y, z);
+        rb.velocity = new Vector3(x, y, z);
     }
 
     void Dive()
     {
         Vector3 v = rb.velocity;
 
+        float x = ic.HorizontalMovement * turnSpeed;
         float y = v.y <= -maxSpeedY ? -maxSpeedY : v.y - diveSpeedFactor;
         float z = v.z >= maxSpeedZ ? maxSpeedZ : v.z + diveSpeedFactor;
 
-        rb.velocity = new Vector3(0, y, z);
+        rb.velocity = new Vector3(x, y, z);
     }
 
     IEnumerator PropulsionTimeCounter()
