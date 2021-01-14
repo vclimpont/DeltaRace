@@ -120,7 +120,7 @@ public class PlayerController : MonoBehaviour
     public void StartPropelling()
     {
         Vector3 v = rb.velocity;
-        rb.velocity = new Vector3(v.x, v.y, v.z / 2f);
+        rb.velocity = new Vector3(v.x, v.y, v.z / 1.5f);
 
         ac.PlayBoostAnimation(propulsionTimer);
         cameraController.Shake();

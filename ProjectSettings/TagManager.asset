@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Fan
   - Obstacle
+  - Rock
   layers:
   - Default
   - TransparentFX

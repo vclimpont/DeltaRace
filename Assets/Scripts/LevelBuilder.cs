@@ -13,6 +13,8 @@ public class LevelBuilder : MonoBehaviour
 
     [SerializeField][Range(0f, 1f)] private float obstaclesRatio = 0f;
     [SerializeField][Range(0f, 1f)] private float fansRatio = 0f;
+    [SerializeField] private float deltaRandomRotation;
+    [SerializeField] private float deltaRandomScale;
 
     [SerializeField] private GameObject obstaclePrefab = null;
 
@@ -21,20 +23,39 @@ public class LevelBuilder : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        xPositions = new float[] { -4f, 0, 4f };
+        xPositions = new float[] { -12f, -2, 8f };
 
         BuildLevel();
     }
 
+    private Vector3 GetObstacleRandomScale()
+    {
+        float rX = Random.Range(-deltaRandomScale, deltaRandomScale);
+        float rY = Random.Range(-deltaRandomScale, deltaRandomScale);
+        float rZ = Random.Range(-deltaRandomScale, deltaRandomScale);
+
+        return new Vector3(rX, rY, rZ);
+    }
+
+    private Vector3 GetObstacleRandomRotation()
+    {
+        float rX = Random.Range(-deltaRandomRotation, deltaRandomRotation);
+        float rY = Random.Range(-deltaRandomRotation, deltaRandomRotation);
+        float rZ = Random.Range(-deltaRandomRotation, deltaRandomRotation);
+
+        return new Vector3(rX, rY, rZ);
+    }
+
     private void BuildObstacle(Vector3 position)
     {
-        GameObject obstacle = Instantiate(obstaclePrefab, position, Quaternion.identity);
+        GameObject obstacle = Instantiate(obstaclePrefab, position, Quaternion.Euler(GetObstacleRandomRotation()));
+        obstacle.transform.GetChild(0).transform.localScale += GetObstacleRandomScale();
 
         float r = Random.Range(0f, 1f);
 
         if(r > fansRatio)
         {
-            obstacle.transform.GetChild(0).gameObject.SetActive(false);
+            obstacle.transform.GetChild(1).gameObject.SetActive(false);
         }
     }
 
@@ -53,12 +74,17 @@ public class LevelBuilder : MonoBehaviour
 
     private void BuildLayer(float z)
     {
+        float fansRatioBuffer = fansRatio;
+
         float y = startY;
         for (int i = 0; i < floorsSize; i++)
         {
             BuildFloor(y, z);
             y += offsetBetweenFloors;
+            fansRatio -= 0.25f;
         }
+
+        fansRatio = fansRatioBuffer;
     }
 
     public void BuildLevel()
