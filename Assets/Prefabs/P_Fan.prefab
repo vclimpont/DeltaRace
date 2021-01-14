@@ -44,7 +44,7 @@ GameObject:
   - component: {fileID: 3585362104016602838}
   - component: {fileID: 1226138819322670835}
   m_Layer: 0
-  m_Name: Fan
+  m_Name: P_Fan
   m_TagString: Fan
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -90,7 +90,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5511c40e1b336f340b61790065692625, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  propulsionForce: 300
+  propulsionForce: 400
   direction: {x: 0, y: 1, z: 0}
 --- !u!95 &5137395464290573900
 Animator:

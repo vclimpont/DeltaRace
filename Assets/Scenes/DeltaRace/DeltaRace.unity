@@ -19783,9 +19783,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   minSpeed: 0
-  maxSpeed: 2
+  maxSpeed: 1
   minAmplitude: 0
-  maxAmplitude: 10
+  maxAmplitude: 5
   sphericalRatio: 0.65
 --- !u!114 &746191027
 MonoBehaviour:
@@ -19799,7 +19799,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2fa28769325193479458ef5a5b96605, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minSize: 3
+  minSize: 5
   maxSize: 10
   minScaleAmplitude: 0.3
   maxScaleAmplitude: 0.6
