@@ -16,47 +16,24 @@ public class LevelBuilder : MonoBehaviour
     [SerializeField] private float deltaRandomRotation;
     [SerializeField] private float deltaRandomScale;
 
-    [SerializeField] private GameObject obstaclePrefab = null;
+    [SerializeField] private GameObject ringPrefab = null;
 
     private float[] xPositions;
+    private RingBuilder rbuild;
 
     // Start is called before the first frame update
     void Start()
     {
-        xPositions = new float[] { -12f, -2, 8f };
+        xPositions = new float[] { -2 };
+        rbuild = GetComponent<RingBuilder>();
 
         BuildLevel();
     }
 
-    private Vector3 GetObstacleRandomScale()
+    private void BuildRing(Vector3 position)
     {
-        float rX = Random.Range(-deltaRandomScale, deltaRandomScale);
-        float rY = Random.Range(-deltaRandomScale, deltaRandomScale);
-        float rZ = Random.Range(-deltaRandomScale, deltaRandomScale);
-
-        return new Vector3(rX, rY, rZ);
-    }
-
-    private Vector3 GetObstacleRandomRotation()
-    {
-        float rX = Random.Range(-deltaRandomRotation, deltaRandomRotation);
-        float rY = Random.Range(-deltaRandomRotation, deltaRandomRotation);
-        float rZ = Random.Range(-deltaRandomRotation, deltaRandomRotation);
-
-        return new Vector3(rX, rY, rZ);
-    }
-
-    private void BuildObstacle(Vector3 position)
-    {
-        GameObject obstacle = Instantiate(obstaclePrefab, position, Quaternion.Euler(GetObstacleRandomRotation()));
-        obstacle.transform.GetChild(0).transform.localScale += GetObstacleRandomScale();
-
-        float r = Random.Range(0f, 1f);
-
-        if(r > fansRatio)
-        {
-            obstacle.transform.GetChild(1).gameObject.SetActive(false);
-        }
+        GameObject ring = Instantiate(ringPrefab, position, Quaternion.identity);
+        rbuild.SetRing(ring.GetComponent<RingComponent>());
     }
 
     private void BuildFloor(float y, float z)
@@ -67,7 +44,7 @@ public class LevelBuilder : MonoBehaviour
 
             if(r <= obstaclesRatio)
             {
-                BuildObstacle(new Vector3(xPositions[i], y, z));
+                BuildRing(new Vector3(xPositions[i], y, z));
             }
         }
     }
