@@ -125,15 +125,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa8a57fdb06ab2c4e89076a7c39c15ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minSpeedZ: 10
-  maxSpeedZ: 60
-  minSpeedY: 10
-  maxSpeedY: 20
-  releaseSpeedFactor: 0.5
-  diveSpeedFactor: 0.7
+  cameraController: {fileID: 0}
+  minSpeedZ: 15
+  maxSpeedZ: 50
+  minSpeedY: 15
+  maxSpeedY: 25
+  releaseSpeedFactor: 0.75
+  diveSpeedFactor: 1.5
   turnSpeed: 50
   turnReleaseSpeedFactor: 0.1
-  propulsionTimer: 0.3
+  propulsionTimer: 0.2
+  propulsionReleaseTimer: 0.15
 --- !u!114 &1574937752325411043
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -146,3 +148,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7846163923ae60749b45ee102479ccb5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxShineIntensity: 0.1

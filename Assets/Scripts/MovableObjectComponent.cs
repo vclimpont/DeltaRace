@@ -2,10 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RingComponent : MonoBehaviour
+public class MovableObjectComponent : MonoBehaviour
 {
-    public float size { get; set; }
-    public int score { get; set; }
     public float speed { get; set; }
     public Vector2 moveDirection { get; set; }
     public float amplitude { get; set; }
@@ -18,17 +16,11 @@ public class RingComponent : MonoBehaviour
 
     void Start()
     {
-        //score = 100;
-        //speed = 10;
-        //moveDirection = new Vector2(1f, 1f);
-        //amplitude = 10;
-        //spherical = false;
-
         minPos = transform.position - (Vector3)(amplitude * moveDirection);
         maxPos = transform.position + (Vector3)(amplitude * moveDirection);
         basePosition = transform.position;
 
-        if(!spherical)
+        if (!spherical && speed > 0 && amplitude > 0)
         {
             StartCoroutine(TranslationMovement());
         }
@@ -41,7 +33,7 @@ public class RingComponent : MonoBehaviour
             return;
         }
 
-        if(spherical)
+        if (spherical)
         {
             SphericalMovement();
         }
@@ -65,7 +57,7 @@ public class RingComponent : MonoBehaviour
             transform.position = Vector3.Slerp(a, b, dt);
             dt += Time.deltaTime * speed;
 
-            if(dt >= 1)
+            if (dt >= 1)
             {
                 dt = 0;
                 Vector3 c = a;
@@ -74,15 +66,5 @@ public class RingComponent : MonoBehaviour
             }
             yield return new WaitForFixedUpdate();
         }
-    }
-
-    void OnTriggerEnter(Collider collider)
-    {
-        if(collider.CompareTag("Player"))
-        {
-            Debug.Log("SCORE +" + score);
-        }
-        // Joue une animation
-        // Donne de la force
     }
 }

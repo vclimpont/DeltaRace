@@ -5,72 +5,106 @@ using UnityEngine;
 public class LevelBuilder : MonoBehaviour
 {
     [SerializeField] private int layersSize = 0;
-    [SerializeField] private int floorsSize = 0;
     [SerializeField] private float offsetBetweenLayers = 0f;
     [SerializeField] private float offsetBetweenFloors = 0f;
+    [SerializeField] private float startX = 0f;
     [SerializeField] private float startY = 0f;
     [SerializeField] private float startZ = 0f;
+    [SerializeField] private float deltaRandomX = 0f;
 
-    [SerializeField][Range(0f, 1f)] private float obstaclesRatio = 0f;
-    [SerializeField][Range(0f, 1f)] private float fansRatio = 0f;
-    [SerializeField] private float deltaRandomRotation;
-    [SerializeField] private float deltaRandomScale;
+    [SerializeField][Range(0f, 1f)] private float ringRatio = 0f;
+    [SerializeField][Range(0f, 1f)] private float fanRatio = 0f;
 
     [SerializeField] private GameObject ringPrefab = null;
+    [SerializeField] private GameObject fanPrefab = null;
 
-    private float[] xPositions;
-    private RingBuilder rbuild;
+    private MovableObjectBuilder mob;
+    private ScalableObjectBuilder sob;
 
     // Start is called before the first frame update
     void Start()
     {
-        xPositions = new float[] { -2 };
-        rbuild = GetComponent<RingBuilder>();
+        mob = GetComponent<MovableObjectBuilder>();
+        sob = GetComponent<ScalableObjectBuilder>();
 
         BuildLevel();
     }
 
-    private void BuildRing(Vector3 position)
+    private void BuildObject(GameObject objectToBuild, Vector3 position, bool movable, bool scalable)
     {
-        GameObject ring = Instantiate(ringPrefab, position, Quaternion.identity);
-        rbuild.SetRing(ring.GetComponent<RingComponent>());
+        GameObject go = Instantiate(objectToBuild, position, Quaternion.identity);
+
+        if(movable)
+        {
+            mob.SetMovableObject(go.GetComponent<MovableObjectComponent>());
+        }
+        if(scalable)
+        {
+            sob.SetScalableObject(go.GetComponent<ScalableObjectComponent>());
+        }
     }
 
-    private void BuildFloor(float y, float z)
+    private void BuildFloor(int floorIndex, float y)
     {
-        for (int i = 0; i < xPositions.Length; i++)
+        GameObject floorGO;
+        float z;
+        switch (floorIndex)
+        {
+            case 0:
+                floorGO = fanPrefab;
+                z = startZ - 50f;
+                break;
+            case 2:
+                floorGO = ringPrefab;
+                z = startZ;
+                break;
+            default:
+                floorGO = null;
+                z = startZ;
+                break;
+        }
+
+        for (int i = 0; i < layersSize; i++)
+        {
+            BuildLayer(floorGO, y, z);
+            z += offsetBetweenLayers;
+        }
+    }
+
+    private void BuildLayer(GameObject objectToSpawn, float y, float z)
+    {
+        float x = Random.Range(startX - deltaRandomX, startX + deltaRandomX);
+
+        if(objectToSpawn == fanPrefab)
+        {
+            BuildObject(fanPrefab, new Vector3(x, y, z), false, false);
+        }
+        else if(objectToSpawn == ringPrefab)
+        {
+            BuildObject(ringPrefab, new Vector3(x, y, z), true, true);
+        }
+        else
         {
             float r = Random.Range(0f, 1f);
 
-            if(r <= obstaclesRatio)
+            if (r <= ringRatio)
             {
-                BuildRing(new Vector3(xPositions[i], y, z));
+                BuildObject(ringPrefab, new Vector3(x, y, z), true, true);
+            }
+            else if(r <= ringRatio + fanRatio)
+            {
+                BuildObject(fanPrefab, new Vector3(x, y, z), true, false);
             }
         }
     }
 
-    private void BuildLayer(float z)
-    {
-        float fansRatioBuffer = fansRatio;
-
-        float y = startY;
-        for (int i = 0; i < floorsSize; i++)
-        {
-            BuildFloor(y, z);
-            y += offsetBetweenFloors;
-            fansRatio -= 0.25f;
-        }
-
-        fansRatio = fansRatioBuffer;
-    }
-
     public void BuildLevel()
     {
-        float z = startZ;
-        for (int i = 0; i < layersSize; i++)
+        float y = startY;
+        for (int i = 0; i < 3; i++)
         {
-            BuildLayer(z);
-            z += offsetBetweenLayers;
+            BuildFloor(i, y);
+            y += offsetBetweenFloors;
         }
     }
 
