@@ -27,7 +27,7 @@ public class ScalableObjectComponent : MonoBehaviour
     {
         float s = Mathf.PingPong(Time.time, 2 * amplitude);
         s -= amplitude;
-        Vector3 dtScale = new Vector3(baseScale.x * s, 0.5f, baseScale.z * s);
+        Vector3 dtScale = new Vector3(baseScale.x * s, baseScale.y * s, 0);
 
         transform.localScale = baseScale + dtScale;
     }

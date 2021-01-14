@@ -11,6 +11,7 @@ public class LevelBuilder : MonoBehaviour
     [SerializeField] private float startY = 0f;
     [SerializeField] private float startZ = 0f;
     [SerializeField] private float deltaRandomX = 0f;
+    [SerializeField] private float deltaRandomY = 0f;
 
     [SerializeField][Range(0f, 1f)] private float ringRatio = 0f;
     [SerializeField][Range(0f, 1f)] private float fanRatio = 0f;
@@ -73,15 +74,16 @@ public class LevelBuilder : MonoBehaviour
 
     private void BuildLayer(GameObject objectToSpawn, float y, float z)
     {
-        float x = Random.Range(startX - deltaRandomX, startX + deltaRandomX);
+        float rx = Random.Range(startX - deltaRandomX, startX + deltaRandomX);
+        float ry = Random.Range(y - deltaRandomY, y + deltaRandomY);
 
-        if(objectToSpawn == fanPrefab)
+        if (objectToSpawn == fanPrefab)
         {
-            BuildObject(fanPrefab, new Vector3(x, y, z), false, false);
+            BuildObject(fanPrefab, new Vector3(rx, ry, z), false, false);
         }
         else if(objectToSpawn == ringPrefab)
         {
-            BuildObject(ringPrefab, new Vector3(x, y, z), true, true);
+            BuildObject(ringPrefab, new Vector3(rx, ry, z), true, true);
         }
         else
         {
@@ -89,11 +91,11 @@ public class LevelBuilder : MonoBehaviour
 
             if (r <= ringRatio)
             {
-                BuildObject(ringPrefab, new Vector3(x, y, z), true, true);
+                BuildObject(ringPrefab, new Vector3(rx, ry, z), true, true);
             }
             else if(r <= ringRatio + fanRatio)
             {
-                BuildObject(fanPrefab, new Vector3(x, y, z), true, false);
+                BuildObject(fanPrefab, new Vector3(rx, ry, z), true, false);
             }
         }
     }
