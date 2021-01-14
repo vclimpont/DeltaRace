@@ -78192,10 +78192,6 @@ PrefabInstance:
       propertyPath: cameraController
       value: 
       objectReference: {fileID: 1179785652}
-    - target: {fileID: 1504420023, guid: 3e37f154b3eea95498fee0081a4e2e31, type: 3}
-      propertyPath: maxSpeedY
-      value: 20
-      objectReference: {fileID: 0}
     - target: {fileID: 5053872455910465262, guid: 3e37f154b3eea95498fee0081a4e2e31,
         type: 3}
       propertyPath: m_Name

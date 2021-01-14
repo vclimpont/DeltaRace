@@ -22,29 +22,34 @@ public class PropulsorComponent : MonoBehaviour
 
     private void OnTriggerEnter(Collider collider)
     {
+        HangGliderComponent hgc = collider.GetComponent<HangGliderComponent>();
+        if(hgc != null)
+        {
+            hgc.StartPropelling();
+        }
+
         if (collider.CompareTag("Player"))
         {
-            PlayerController playerController = collider.GetComponent<PlayerController>();
-            playerController.StartPropelling();
+            collider.GetComponent<PlayerController>().ShakeCamera();
         }
     }
 
     private void OnTriggerStay(Collider collider)
     {
-        if (collider.CompareTag("Player"))
+        HangGliderComponent hgc = collider.GetComponent<HangGliderComponent>();
+        if (hgc != null)
         {
-            PlayerController playerController = collider.GetComponent<PlayerController>();
-            playerController.SetPropulsion();
+            hgc.SetPropulsion();
             PropelPlayer(collider.transform.position, collider.attachedRigidbody);
         }
     }
 
     private void OnTriggerExit(Collider collider)
     {
-        if (collider.CompareTag("Player"))
+        HangGliderComponent hgc = collider.GetComponent<HangGliderComponent>();
+        if (hgc != null)
         {
-            PlayerController playerController = collider.GetComponent<PlayerController>();
-            playerController.PropulsionStun();
+            hgc.PropulsionStun();
         }
     }
 }

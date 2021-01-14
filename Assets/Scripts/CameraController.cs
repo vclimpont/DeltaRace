@@ -26,7 +26,7 @@ public class CameraController : MonoBehaviour
 
     public void Shake()
     {
-        //if(!canShake)
+        //if (!canShake)
         //{
         //    return;
         //}
