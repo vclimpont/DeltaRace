@@ -13,6 +13,8 @@ public class AIController : MonoBehaviour
     [SerializeField] private LayerMask lmBoostsToSeek;
     [SerializeField] private int targetBoostIndex;
 
+    [SerializeField] private float speedThresholdToEmitSpeedParticles = 0f;
+
     private enum State { Release, Dive, SeekBoosts }
     private enum MovementDirection { Up, Down, Left, Right, Forward }
 

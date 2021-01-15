@@ -17,9 +17,10 @@ public class HangGliderComponent : MonoBehaviour
     [SerializeField] private float propulsionReleaseTimer = 0;
 
     private Rigidbody rb;
-    private PlayerAnimationController ac;
+    public HangGliderAnimationController ac { get; private set; }
 
     private Vector3 baseScale;
+    private ParticleSystem psTrail;
 
     public bool isPropelled { get; set; }
     public bool rotateX { get; set; }
@@ -27,7 +28,7 @@ public class HangGliderComponent : MonoBehaviour
     void Awake()
     {
         rb = GetComponent<Rigidbody>();
-        ac = GetComponent<PlayerAnimationController>();
+        ac = GetComponent<HangGliderAnimationController>();
 
         baseScale = transform.localScale;
         rotateX = true;
@@ -39,6 +40,7 @@ public class HangGliderComponent : MonoBehaviour
         ac.StretchOnVelocityValue(baseScale, minSpeedZ, maxSpeedZ);
         ac.RotateOnVelocityValue(!isPropelled && rotateX);
         ac.ShineOnVelocityValue(minSpeedZ, maxSpeedZ);
+        ac.EmitTrailsParticles();
     }
 
     public void Release()

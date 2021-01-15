@@ -16,7 +16,7 @@ public class ScalableObjectBuilder : MonoBehaviour
         float scaleAmplitude = Random.Range(minScaleAmplitude, maxScaleAmplitude);
         float scaleOverTime = Random.Range(0f, 1f);
 
-        so.transform.localScale = new Vector3(size, size, 0.5f);
+        so.transform.localScale = Vector3.one * size;
         so.size = size;
         so.amplitude = scaleAmplitude;
         so.scaleOverTime = scaleOverTime <= scaleRatio;

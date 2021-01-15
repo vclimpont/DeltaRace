@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerAnimationController : MonoBehaviour
+public class HangGliderAnimationController : MonoBehaviour
 {
     [SerializeField][Range(0.01f, 1f)] private float maxShineIntensity = 0.01f;
+    [SerializeField] private float speedThresholdToEmitParticles = 0f;
+    [SerializeField] private ParticleSystem[] psTrails;
 
     private Rigidbody rb;
     private float boostAnimationCooldown;
@@ -55,6 +57,27 @@ public class PlayerAnimationController : MonoBehaviour
 
         StopCoroutine(BoostAnimation(0.5f, right));
         StartCoroutine(BoostAnimation(0.5f, right));
+    }
+
+    public void EmitTrailsParticles()
+    {
+        if(psTrails == null || psTrails.Length != 2)
+        {
+            return;
+        }
+
+        float m = rb.velocity.magnitude;
+
+        if(m >= speedThresholdToEmitParticles && !psTrails[0].isPlaying)
+        {
+            psTrails[0].Play();
+            psTrails[1].Play();
+        }
+        else if(m < speedThresholdToEmitParticles && psTrails[0].isPlaying)
+        {
+            psTrails[0].Stop();
+            psTrails[1].Stop();
+        }
     }
 
     IEnumerator BoostAnimation(float animationTime, bool right = true)

@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 9068053911219507310}
   - component: {fileID: 5244215553858156617}
   - component: {fileID: 4103909199507117600}
-  - component: {fileID: 1574937752325411043}
+  - component: {fileID: 4956489583208615694}
   m_Layer: 10
   m_Name: P_Blue_AI
   m_TagString: AI
@@ -137,6 +137,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 24576
   targetBoostIndex: 0
+  speedThresholdToEmitSpeedParticles: 0
 --- !u!114 &4103909199507117600
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -159,7 +160,7 @@ MonoBehaviour:
   turnReleaseSpeedFactor: 0.1
   propulsionTimer: 0.2
   propulsionReleaseTimer: 0.15
---- !u!114 &1574937752325411043
+--- !u!114 &4956489583208615694
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -168,7 +169,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 5053872455910465262}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7846163923ae60749b45ee102479ccb5, type: 3}
+  m_Script: {fileID: 11500000, guid: 910949eaaa8221d4988358f7f226fea7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxShineIntensity: 0.1
+  maxShineIntensity: 0.2
+  speedThresholdToEmitParticles: 30
+  psTrails: []

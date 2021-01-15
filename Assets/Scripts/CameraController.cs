@@ -11,6 +11,12 @@ public class CameraController : MonoBehaviour
 
     private Vector3 cameraDistanceFromPlayer;
     private bool canShake;
+    private ParticleSystem psCamera;
+
+    void Awake()
+    {
+        psCamera = GetComponentInChildren<ParticleSystem>();
+    }
 
     void Start()
     {
@@ -35,6 +41,20 @@ public class CameraController : MonoBehaviour
 
         //StopCoroutine(ShakeCooldown());
         //StartCoroutine(ShakeCooldown());
+    }
+
+    public void EmitSpeedParticles(bool emit)
+    {
+        if (emit && !psCamera.isPlaying)
+        {
+            psCamera.Play();
+        }
+        else if (!emit && psCamera.isPlaying)
+        {
+            psCamera.Stop();
+        }
+
+        Debug.Log(psCamera.isPlaying);
     }
 
     IEnumerator ShakeCooldown()
