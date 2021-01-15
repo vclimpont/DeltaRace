@@ -15,7 +15,7 @@ public class PropulsorComponent : MonoBehaviour
         propulsionVector = transform.rotation * direction;
     }
 
-    void PropelPlayer(Vector3 playerPosition, Rigidbody rb)
+    void PropelPlayer(Rigidbody rb)
     {
         rb.AddForce(propulsionForce * propulsionVector, ForceMode.Force);
     }
@@ -40,7 +40,7 @@ public class PropulsorComponent : MonoBehaviour
         if (hgc != null)
         {
             hgc.SetPropulsion();
-            PropelPlayer(collider.transform.position, collider.attachedRigidbody);
+            PropelPlayer(collider.attachedRigidbody);
         }
     }
 

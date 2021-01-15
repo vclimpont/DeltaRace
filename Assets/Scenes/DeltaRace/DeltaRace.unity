@@ -78283,21 +78283,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 6545889519752984552, guid: bfdf0445ee8f4064c85a03b494a304be,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -7.9
-      objectReference: {fileID: 0}
-    - target: {fileID: 6545889519752984552, guid: bfdf0445ee8f4064c85a03b494a304be,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -4.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6545889519752984552, guid: bfdf0445ee8f4064c85a03b494a304be,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 7.2
-      objectReference: {fileID: 0}
     - target: {fileID: 6545889521083631504, guid: bfdf0445ee8f4064c85a03b494a304be,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -78363,10 +78348,5 @@ PrefabInstance:
       propertyPath: playerTransform
       value: 
       objectReference: {fileID: 864736827}
-    - target: {fileID: 6545889521083631511, guid: bfdf0445ee8f4064c85a03b494a304be,
-        type: 3}
-      propertyPath: delayBetweenShakes
-      value: 0.5
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bfdf0445ee8f4064c85a03b494a304be, type: 3}
