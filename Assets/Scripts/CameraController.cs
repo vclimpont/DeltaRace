@@ -32,15 +32,15 @@ public class CameraController : MonoBehaviour
 
     public void Shake()
     {
-        //if (!canShake)
-        //{
-        //    return;
-        //}
+        if (!canShake)
+        {
+            return;
+        }
 
-        //animator.SetTrigger("Shake");
+        animator.SetTrigger("Shake");
 
-        //StopCoroutine(ShakeCooldown());
-        //StartCoroutine(ShakeCooldown());
+        StopCoroutine(ShakeCooldown());
+        StartCoroutine(ShakeCooldown());
     }
 
     public void EmitSpeedParticles(bool emit)
