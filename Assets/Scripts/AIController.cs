@@ -9,6 +9,10 @@ public class AIController : MonoBehaviour
     [SerializeField] private float diveThreshold;
     [SerializeField] private LayerMask lmObstaclesToAvoid;
 
+    [SerializeField] private float sphereBoostsDetectionRadius;
+    [SerializeField] private LayerMask lmBoostsToSeek;
+    [SerializeField] private int targetBoostIndex;
+
     private enum State { Release, Dive, SeekBoosts }
     private enum MovementDirection { Up, Down, Left, Right, Forward }
 
@@ -20,6 +24,11 @@ public class AIController : MonoBehaviour
         hgc = GetComponent<HangGliderComponent>();
 
         currentState = State.Release;
+    }
+
+    void Start()
+    {
+        hgc.rotateX = false;
     }
 
     // Update is called once per frame
@@ -71,7 +80,17 @@ public class AIController : MonoBehaviour
 
     void SeekBoosts()
     {
+        Collider[] boosts = Physics.OverlapSphere(transform.position + new Vector3(0, 0, sphereBoostsDetectionRadius), sphereBoostsDetectionRadius, lmBoostsToSeek);
 
+        if(boosts.Length > targetBoostIndex)
+        {
+            hgc.MoveTowards(boosts[targetBoostIndex].transform.position);
+        }
+        else
+        {
+            Move(MovementDirection.Forward);
+            Move(MovementDirection.Down);
+        }
     }
 
     void CheckObstacles()
@@ -79,12 +98,12 @@ public class AIController : MonoBehaviour
         Vector3 rayStartPosition = transform.position + new Vector3(0, 1, 0);
 
         bool forwardObstacle = Physics.Raycast(rayStartPosition, transform.rotation * new Vector3(0, 0, 1), obstacleDetectionDistance, lmObstaclesToAvoid);
-        bool leftObstacle = Physics.Raycast(rayStartPosition, transform.rotation * new Vector3(1, 0, 0), obstacleDetectionDistance, lmObstaclesToAvoid);
-        bool rightObstacle = Physics.Raycast(rayStartPosition, transform.rotation * new Vector3(-1, 0, 0), obstacleDetectionDistance, lmObstaclesToAvoid);
+        bool leftObstacle = Physics.Raycast(rayStartPosition, transform.rotation * new Vector3(-1, 0, 0), obstacleDetectionDistance, lmObstaclesToAvoid);
+        bool rightObstacle = Physics.Raycast(rayStartPosition, transform.rotation * new Vector3(1, 0, 0), obstacleDetectionDistance, lmObstaclesToAvoid);
 
         Debug.DrawLine(rayStartPosition, rayStartPosition + (transform.rotation * new Vector3(0, 0, 1) * obstacleDetectionDistance));
-        Debug.DrawLine(rayStartPosition, rayStartPosition + (transform.rotation * new Vector3(1, 0, 0) * obstacleDetectionDistance));
         Debug.DrawLine(rayStartPosition, rayStartPosition + (transform.rotation * new Vector3(-1, 0, 0) * obstacleDetectionDistance));
+        Debug.DrawLine(rayStartPosition, rayStartPosition + (transform.rotation * new Vector3(1, 0, 0) * obstacleDetectionDistance));
 
         if (leftObstacle)
         {
@@ -155,5 +174,10 @@ public class AIController : MonoBehaviour
             default:
                 break;
         }
+    }
+
+    void OnDrawGizmos()
+    {
+        Gizmos.DrawWireSphere(transform.position + new Vector3(0, 0, sphereBoostsDetectionRadius), sphereBoostsDetectionRadius);
     }
 }

@@ -127,11 +127,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   obstacleDetectionDistance: 10
-  releaseThreshold: 10
-  diveThreshold: 280
+  releaseThreshold: 5
+  diveThreshold: 140
   lmObstaclesToAvoid:
     serializedVersion: 2
     m_Bits: 4096
+  sphereBoostsDetectionRadius: 15
+  lmBoostsToSeek:
+    serializedVersion: 2
+    m_Bits: 24576
+  targetBoostIndex: 0
 --- !u!114 &4103909199507117600
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -145,12 +150,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   minSpeedZ: 15
-  maxSpeedZ: 50
+  maxSpeedZ: 40
   minSpeedY: 15
   maxSpeedY: 25
   releaseSpeedFactor: 0.75
   diveSpeedFactor: 1.5
-  turnSpeed: 50
+  turnSpeed: 30
   turnReleaseSpeedFactor: 0.1
   propulsionTimer: 0.2
   propulsionReleaseTimer: 0.15

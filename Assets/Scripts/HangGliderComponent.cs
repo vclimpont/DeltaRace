@@ -22,6 +22,7 @@ public class HangGliderComponent : MonoBehaviour
     private Vector3 baseScale;
 
     public bool isPropelled { get; set; }
+    public bool rotateX { get; set; }
 
     void Awake()
     {
@@ -29,13 +30,14 @@ public class HangGliderComponent : MonoBehaviour
         ac = GetComponent<PlayerAnimationController>();
 
         baseScale = transform.localScale;
+        rotateX = true;
     }
 
     // Update is called once per frame
     void Update()
     {
         ac.StretchOnVelocityValue(baseScale, minSpeedZ, maxSpeedZ);
-        ac.RotateOnVelocityValue(!isPropelled);
+        ac.RotateOnVelocityValue(!isPropelled && rotateX);
         ac.ShineOnVelocityValue(minSpeedZ, maxSpeedZ);
     }
 
@@ -67,6 +69,13 @@ public class HangGliderComponent : MonoBehaviour
         float x = horizontalMovement * turnSpeed;
 
         rb.velocity = new Vector3(x, v.y, v.z);
+    }
+
+    public void MoveTowards(Vector3 position)
+    {
+        Vector3 targetDirection = (position - transform.position).normalized;
+        float speed = position.y < transform.position.y ? maxSpeedZ : minSpeedZ;
+        rb.velocity = targetDirection * speed;
     }
 
     IEnumerator PropulsionTimeCounter()
