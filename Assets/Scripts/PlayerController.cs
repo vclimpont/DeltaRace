@@ -9,8 +9,6 @@ public class PlayerController : MonoBehaviour
     private InputChecker ic;
     private HangGliderComponent hgc; 
 
-    private bool isPropelled;
-
     void Awake()
     {
         hgc = GetComponent<HangGliderComponent>();
@@ -20,7 +18,7 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(isPropelled)
+        if(hgc.isPropelled)
         {
             return;
         }
@@ -31,7 +29,7 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
-        if(isPropelled)
+        if(hgc.isPropelled)
         {
             return;
         }
