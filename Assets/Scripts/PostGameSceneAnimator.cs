@@ -17,5 +17,10 @@ public class PostGameSceneAnimator : MonoBehaviour
             hgc.HasEnded = true;
             hgc.EndPosition = endPosition;
         }
+
+        if(collider.CompareTag("Player"))
+        {
+            LevelManager.Instance.EndRace();
+        }
     }
 }

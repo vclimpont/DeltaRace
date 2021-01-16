@@ -1,7 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.SceneManagement;
+﻿using UnityEngine;
 
 public class LevelManager : MonoBehaviour
 {
@@ -12,19 +9,24 @@ public class LevelManager : MonoBehaviour
     [SerializeField] private Transform endRaceTransform = null;
 
     private float raceLength;
+    public enum LevelState { InRace, EndRace }
 
     public int CurrentLevel { get; private set; }
     public int Progression { get; private set; }
     public int Speed { get; private set; }
     public int RacePosition { get; private set; }
     public int Score { get; private set; }
+    public int HighScore { get; private set; }
     public int RacersSize { get; private set; }
+    public LevelState CurrentState { get; private set; } 
 
     void Awake()
     {
         Instance = this;
+        CurrentState = LevelState.InRace;
 
         CurrentLevel = 1; // get from save file
+        HighScore = 0; // get from save file
         Progression = 0;
         Speed = 0;
         RacePosition = AIs.Length + 1;
@@ -71,13 +73,21 @@ public class LevelManager : MonoBehaviour
         Score += scoreValue;
     }
 
-    public void StartLevel()
+    public int GetFinalScore()
     {
-        SceneManager.LoadScene("DeltaRace");
+        return (int)(Score * CurrentLevel * 1.0f / RacePosition);
     }
 
-    public void RestartLevel()
+    public void EndRace()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        if(CurrentState == LevelState.EndRace)
+        {
+            return;
+        }
+
+        CurrentState = LevelState.EndRace;
+        // Save score si high score; 
+        // Save level si premier
+
     }
 }
