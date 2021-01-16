@@ -8,7 +8,7 @@ public class RingAnimation : MonoBehaviour
 
     void OnTriggerEnter(Collider collider)
     {
-        if(collider.CompareTag("Player") || collider.CompareTag("AI"))
+        if (collider.CompareTag("Player") || collider.CompareTag("AI"))
         {
             psBurst.Play();
         }

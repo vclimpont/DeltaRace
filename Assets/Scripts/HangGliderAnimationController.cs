@@ -64,19 +64,19 @@ public class HangGliderAnimationController : MonoBehaviour
 
     public void EmitTrailsParticles()
     {
-        if(psTrails == null || psTrails.Length != 2)
+        if (psTrails == null || psTrails.Length != 2)
         {
             return;
         }
 
         float m = rb.velocity.magnitude;
 
-        if(m >= speedThresholdToEmitParticles && !psTrails[0].isPlaying)
+        if (m >= speedThresholdToEmitParticles && !psTrails[0].isPlaying)
         {
             psTrails[0].Play();
             psTrails[1].Play();
         }
-        else if(m < speedThresholdToEmitParticles && psTrails[0].isPlaying)
+        else if (m < speedThresholdToEmitParticles && psTrails[0].isPlaying)
         {
             psTrails[0].Stop();
             psTrails[1].Stop();

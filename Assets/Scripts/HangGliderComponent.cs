@@ -20,7 +20,6 @@ public class HangGliderComponent : MonoBehaviour
     public HangGliderAnimationController ac { get; private set; }
 
     private Vector3 baseScale;
-    private ParticleSystem psTrail;
 
     public bool isPropelled { get; set; }
     public bool rotateX { get; set; }
