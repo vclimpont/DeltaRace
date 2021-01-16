@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/DeltaRace/Preload.unity
+    guid: 5b55fb66f3905174dadb55066844f237
+  - enabled: 1
     path: Assets/Scenes/DeltaRace/PreGame.unity
     guid: 8546846a68dc8f549b5f2d74c6d508d7
   - enabled: 1

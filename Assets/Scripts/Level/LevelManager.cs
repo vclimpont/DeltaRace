@@ -25,8 +25,8 @@ public class LevelManager : MonoBehaviour
         Instance = this;
         CurrentState = LevelState.InRace;
 
-        CurrentLevel = 1; // get from save file
-        HighScore = 0; // get from save file
+        CurrentLevel = SaveManager.Instance.state.MaxLevel;
+        HighScore = SaveManager.Instance.state.HighScore;
         Progression = 0;
         Speed = 0;
         RacePosition = AIs.Length + 1;
@@ -65,7 +65,7 @@ public class LevelManager : MonoBehaviour
 
     void SetSpeed()
     {
-        Speed = (int)player.GetComponent<Rigidbody>().velocity.magnitude;
+        Speed = (int)player.GetComponent<Rigidbody>().velocity.magnitude * 2;
     }
 
     public void AddScore(int scoreValue)
@@ -86,8 +86,19 @@ public class LevelManager : MonoBehaviour
         }
 
         CurrentState = LevelState.EndRace;
-        // Save score si high score; 
-        // Save level si premier
+        
 
+        if(GetFinalScore() > SaveManager.Instance.state.HighScore)
+        {
+            SaveManager.Instance.state.HighScore = GetFinalScore();
+            HighScore = GetFinalScore();
+            SaveManager.Instance.Save();
+        }
+        
+        if(RacePosition == 1)
+        {
+            SaveManager.Instance.state.MaxLevel++;
+            SaveManager.Instance.Save();
+        }
     }
 }

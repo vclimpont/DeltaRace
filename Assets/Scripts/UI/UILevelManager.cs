@@ -1,9 +1,9 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
-public class UIManager : MonoBehaviour
+public class UILevelManager : MonoBehaviour
 {
-    public static UIManager Instance;
+    public static UILevelManager Instance;
 
     [Header("Level Canvas")]
     [SerializeField] private GameObject goLevelCanvas;
@@ -19,6 +19,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private Text textPGRacePosition = null;
     [SerializeField] private Text textPGScore = null;
     [SerializeField] private Text textPGHighScore = null;
+    [SerializeField] private Text textPGNextLevelButton = null;
 
     private LevelManager lmanager;
     private bool raceHasEnded;
@@ -32,7 +33,7 @@ public class UIManager : MonoBehaviour
     {
         lmanager = LevelManager.Instance;
 
-        textCurrentLevel.text = "LEVEL " + lmanager.CurrentLevel;
+        textCurrentLevel.text = "RACE " + lmanager.CurrentLevel;
     }
 
     // Update is called once per frame
@@ -49,15 +50,16 @@ public class UIManager : MonoBehaviour
             textProgression.text = lmanager.Progression + " %";
             textSpeed.text = lmanager.Speed + " km/h";
             textScore.text = "" + lmanager.Score;
+            textPGNextLevelButton.text = lmanager.RacePosition == 1 ? "Next Race" : "Retry";
         }
         else
         {
             goLevelCanvas.SetActive(false);
             goPostGameCanvas.SetActive(true);
 
-            textPGCurrentLevel.text = "LEVEL " + lmanager.CurrentLevel;
+            textPGCurrentLevel.text = "RACE " + lmanager.CurrentLevel;
             textPGRacePosition.text = lmanager.RacePosition + " / " + lmanager.RacersSize;
-            textPGScore.text = "" + lmanager.Score;
+            textPGScore.text = "" + lmanager.GetFinalScore();
             textPGHighScore.text = "" + lmanager.HighScore;
             raceHasEnded = true;
         }
