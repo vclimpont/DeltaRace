@@ -4,16 +4,14 @@ using UnityEngine;
 
 public class AIController : MonoBehaviour
 {
-    [SerializeField] private float obstacleDetectionDistance;
-    [SerializeField] private float releaseThreshold;
-    [SerializeField] private float diveThreshold;
+    [SerializeField] private float obstacleDetectionDistance = 0f;
+    [SerializeField] private float releaseThreshold = 0f;
+    [SerializeField] private float diveThreshold = 0f;
     [SerializeField] private LayerMask lmObstaclesToAvoid;
 
-    [SerializeField] private float sphereBoostsDetectionRadius;
+    [SerializeField] private float sphereBoostsDetectionRadius = 0f;
     [SerializeField] private LayerMask lmBoostsToSeek;
-    [SerializeField] private int targetBoostIndex;
-
-    [SerializeField] private float speedThresholdToEmitSpeedParticles = 0f;
+    [SerializeField] private int targetBoostIndex = 0;
 
     private enum State { Release, Dive, SeekBoosts }
     private enum MovementDirection { Up, Down, Left, Right, Forward }

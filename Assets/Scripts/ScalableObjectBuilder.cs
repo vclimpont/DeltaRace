@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class ScalableObjectBuilder : MonoBehaviour
 {
-    [SerializeField] private float minSize;
-    [SerializeField] private float maxSize;
-    [SerializeField] [Range(0.1f, 1f)] private float minScaleAmplitude;
-    [SerializeField] [Range(0.1f, 1f)] private float maxScaleAmplitude;
-    [SerializeField] [Range(0f, 1f)] private float scaleRatio;
+    [SerializeField] private float minSize = 0f;
+    [SerializeField] private float maxSize = 0f;
+    [SerializeField] [Range(0.1f, 1f)] private float minScaleAmplitude = 0.1f;
+    [SerializeField] [Range(0.1f, 1f)] private float maxScaleAmplitude = 0.1f;
+    [SerializeField] [Range(0f, 1f)] private float scaleRatio = 0f;
 
     public void SetScalableObject(ScalableObjectComponent so)
     {

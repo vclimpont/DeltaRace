@@ -5,7 +5,7 @@ using UnityEngine;
 public class CameraController : MonoBehaviour
 {
     [SerializeField] private Transform playerTransform = null;
-    [SerializeField] private Animator animator;
+    [SerializeField] private Animator animator = null;
     [SerializeField] private float stiffnessFactor = 0.01f;
     [SerializeField] private float delayBetweenShakes = 0.01f;
 

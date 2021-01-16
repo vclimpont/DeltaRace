@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class MovableObjectBuilder : MonoBehaviour
 {
-    [SerializeField] private float minSpeed;
-    [SerializeField] private float maxSpeed;
-    [SerializeField] private float minAmplitude;
-    [SerializeField] private float maxAmplitude;
-    [SerializeField][Range(0f, 1f)] private float sphericalRatio;
+    [SerializeField] private float minSpeed = 0f;
+    [SerializeField] private float maxSpeed = 0f;
+    [SerializeField] private float minAmplitude = 0f;
+    [SerializeField] private float maxAmplitude = 0f;
+    [SerializeField][Range(0f, 1f)] private float sphericalRatio = 0f;
 
     public void SetMovableObject(MovableObjectComponent mo)
     {

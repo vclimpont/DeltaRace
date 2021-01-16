@@ -17,6 +17,11 @@ public class GameManager : MonoBehaviour
         
     }
 
+    public void StartLevel()
+    {
+        SceneManager.LoadScene("DeltaRace");
+    }
+
     public void RestartLevel()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ScorableComponent : MonoBehaviour
 {
-    [SerializeField] private int[] scores;
+    [SerializeField] private int[] scores = null;
 
     public int Score { get; set; }
 

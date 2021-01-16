@@ -5,7 +5,7 @@ using UnityEngine;
 public class PropulsorComponent : MonoBehaviour
 {
     [SerializeField] private float propulsionForce = 300f;
-    [SerializeField] private Vector3 direction;
+    [SerializeField] private Vector3 direction = Vector3.zero;
 
     private Vector3 propulsionVector;
 

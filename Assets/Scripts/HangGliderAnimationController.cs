@@ -6,8 +6,8 @@ public class HangGliderAnimationController : MonoBehaviour
 {
     [SerializeField][Range(0.01f, 1f)] private float maxShineIntensity = 0.01f;
     [SerializeField] private float speedThresholdToEmitParticles = 0f;
-    [SerializeField] private ParticleSystem[] psTrails;
-    [SerializeField] private ParticleSystem psBoost;
+    [SerializeField] private ParticleSystem[] psTrails = null;
+    [SerializeField] private ParticleSystem psBoost = null;
 
     private Rigidbody rb;
     private float boostAnimationCooldown;

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class RingAnimation : MonoBehaviour
 {
-    [SerializeField] private ParticleSystem psBurst;
+    [SerializeField] private ParticleSystem psBurst = null;
 
     void OnTriggerEnter(Collider collider)
     {
