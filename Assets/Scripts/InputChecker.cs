@@ -53,7 +53,7 @@ public class InputChecker
                 throw new System.Exception("Player is diving with no inputs triggered");
             }
 
-            HorizontalMovement = Mathf.Clamp(deltaPosition.x / (Screen.width / 2f), -0.5f, 0.5f);
+            HorizontalMovement = Mathf.Clamp(deltaPosition.x / (Screen.width), -0.5f, 0.5f);
         }
     }
 

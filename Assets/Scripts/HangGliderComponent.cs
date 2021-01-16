@@ -77,7 +77,7 @@ public class HangGliderComponent : MonoBehaviour
         Vector3 v = rb.velocity;
 
         float x = horizontalMovement * turnSpeed;
-        float vx = Mathf.Clamp(v.x + (0.5f * x), -40f, 40f);
+        float vx = Mathf.Clamp(v.x + x, -40f, 40f);
 
         rb.velocity = new Vector3(vx, v.y, v.z);
     }
