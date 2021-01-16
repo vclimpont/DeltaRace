@@ -9,10 +9,14 @@ public class ScalableObjectComponent : MonoBehaviour
     public bool scaleOverTime { get; set; }
 
     private Vector3 baseScale;
+    private ParticleSystem[] ps;
 
     void Start()
     {
         baseScale = transform.localScale;
+
+        ps = GetComponentsInChildren<ParticleSystem>();
+        ScaleParticles(baseScale);
     }
 
     void FixedUpdate()
@@ -30,5 +34,14 @@ public class ScalableObjectComponent : MonoBehaviour
         Vector3 dtScale = new Vector3(baseScale.x * s, baseScale.y * s, 0);
 
         transform.localScale = baseScale + dtScale;
+        ScaleParticles(baseScale + dtScale);
+    }
+
+    void ScaleParticles(Vector3 scale)
+    {
+        for (int i = 0; i < ps.Length; i++)
+        {
+            ps[i].transform.localScale = scale;
+        }
     }
 }
