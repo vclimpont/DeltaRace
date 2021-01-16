@@ -73,6 +73,16 @@ public class HangGliderComponent : MonoBehaviour
         rb.velocity = new Vector3(x, v.y, v.z);
     }
 
+    public void ApplyHorizontalMovement(float horizontalMovement)
+    {
+        Vector3 v = rb.velocity;
+
+        float x = horizontalMovement * turnSpeed;
+        float vx = Mathf.Clamp(v.x + (0.5f * x), -40f, 40f);
+
+        rb.velocity = new Vector3(vx, v.y, v.z);
+    }
+
     public void MoveTowards(Vector3 position)
     {
         Vector3 targetDirection = (position - transform.position).normalized;

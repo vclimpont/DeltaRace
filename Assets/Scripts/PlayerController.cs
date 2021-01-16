@@ -39,7 +39,8 @@ public class PlayerController : MonoBehaviour
             return;
         }
 
-        hgc.Turn(ic.HorizontalMovement);
+        //hgc.Turn(ic.HorizontalMovement);
+        hgc.ApplyHorizontalMovement(ic.HorizontalMovement);
 
         if(!ic.IsDiving)
         {

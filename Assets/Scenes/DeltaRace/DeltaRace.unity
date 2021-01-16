@@ -78214,6 +78214,11 @@ PrefabInstance:
       propertyPath: cameraController
       value: 
       objectReference: {fileID: 1179785652}
+    - target: {fileID: 4103909199507117600, guid: 3e37f154b3eea95498fee0081a4e2e31,
+        type: 3}
+      propertyPath: turnSpeed
+      value: 100
+      objectReference: {fileID: 0}
     - target: {fileID: 5053872455910465262, guid: 3e37f154b3eea95498fee0081a4e2e31,
         type: 3}
       propertyPath: m_Name
@@ -78227,7 +78232,7 @@ PrefabInstance:
     - target: {fileID: 5053872455910465263, guid: 3e37f154b3eea95498fee0081a4e2e31,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 15.282478
+      value: 17.082474
       objectReference: {fileID: 0}
     - target: {fileID: 5053872455910465263, guid: 3e37f154b3eea95498fee0081a4e2e31,
         type: 3}
@@ -78291,7 +78296,7 @@ PrefabInstance:
     - target: {fileID: 6545889521083631504, guid: bfdf0445ee8f4064c85a03b494a304be,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 19
+      value: 20.8
       objectReference: {fileID: 0}
     - target: {fileID: 6545889521083631504, guid: bfdf0445ee8f4064c85a03b494a304be,
         type: 3}

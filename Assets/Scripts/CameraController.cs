@@ -53,8 +53,6 @@ public class CameraController : MonoBehaviour
         {
             psCamera.Stop();
         }
-
-        Debug.Log(psCamera.isPlaying);
     }
 
     IEnumerator ShakeCooldown()

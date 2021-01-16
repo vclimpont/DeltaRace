@@ -4902,7 +4902,7 @@ MonoBehaviour:
   maxSpeedY: 20
   releaseSpeedFactor: 0.75
   diveSpeedFactor: 1.5
-  turnSpeed: 50
+  turnSpeed: 10
   turnReleaseSpeedFactor: 0.1
   propulsionTimer: 0.2
   propulsionReleaseTimer: 0.15
