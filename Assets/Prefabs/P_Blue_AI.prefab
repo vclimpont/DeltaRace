@@ -918,7 +918,7 @@ ParticleSystem:
     rateOverDistance:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 5
+      scalar: 1
       minScalar: 0
       maxCurve:
         serializedVersion: 2
@@ -5672,7 +5672,7 @@ ParticleSystem:
     rateOverDistance:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 5
+      scalar: 1
       minScalar: 0
       maxCurve:
         serializedVersion: 2
@@ -9648,7 +9648,6 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 24576
   targetBoostIndex: 0
-  speedThresholdToEmitSpeedParticles: 0
 --- !u!114 &4103909199507117600
 MonoBehaviour:
   m_ObjectHideFlags: 0
