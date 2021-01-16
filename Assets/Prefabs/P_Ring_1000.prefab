@@ -9609,9 +9609,9 @@ GameObject:
   - component: {fileID: 548680404}
   - component: {fileID: 548680403}
   - component: {fileID: 1580050023}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: P_Ring_1000
-  m_TagString: Untagged
+  m_TagString: Ring
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

@@ -54,7 +54,6 @@ public class InputChecker
             }
 
             HorizontalMovement = Mathf.Clamp(deltaPosition.x / (Screen.width / 2f), -0.5f, 0.5f);
-            Debug.Log(HorizontalMovement);
         }
     }
 

@@ -7,6 +7,7 @@ public class HangGliderAnimationController : MonoBehaviour
     [SerializeField][Range(0.01f, 1f)] private float maxShineIntensity = 0.01f;
     [SerializeField] private float speedThresholdToEmitParticles = 0f;
     [SerializeField] private ParticleSystem[] psTrails;
+    [SerializeField] private ParticleSystem psBoost;
 
     private Rigidbody rb;
     private float boostAnimationCooldown;
@@ -49,6 +50,8 @@ public class HangGliderAnimationController : MonoBehaviour
         {
             return;
         }
+        psBoost.Play();
+
         StopCoroutine(BoostAnimationCooldown());
         StartCoroutine(BoostAnimationCooldown());
 
