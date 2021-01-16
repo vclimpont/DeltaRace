@@ -18,7 +18,7 @@ public class ScorableComponent : MonoBehaviour
     {
         if(collider.CompareTag("Player"))
         {
-            Debug.Log("SCORE +" + Score);
+            LevelManager.Instance.AddScore(Score);
         }
     }
 }
