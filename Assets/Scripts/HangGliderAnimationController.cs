@@ -10,14 +10,16 @@ public class HangGliderAnimationController : MonoBehaviour
     [SerializeField] private ParticleSystem psBoost = null;
 
     private Rigidbody rb;
-    private float boostAnimationCooldown;
     private MeshRenderer mesh;
+    private Animator endBehaviourAnimator;
+    private bool isBoostAnimationReady;
 
     void Awake()
     {
         rb = GetComponent<Rigidbody>();
         mesh = GetComponent<MeshRenderer>();
-        boostAnimationCooldown = 0f;
+        endBehaviourAnimator = GetComponent<Animator>();
+        isBoostAnimationReady = true;
     }
 
     public void RotateOnVelocityValue(bool rotateX = true)
@@ -44,16 +46,17 @@ public class HangGliderAnimationController : MonoBehaviour
         mesh.material.SetColor("_EmissionColor", matColor * dtI);
     }
 
-    public void PlayBoostAnimation(float animationTime)
+    public void PlayBoostAnimation(bool withParticles = true)
     {
-        if(boostAnimationCooldown > 0)
+        if(!isBoostAnimationReady)
         {
             return;
         }
-        psBoost.Play();
 
-        StopCoroutine(BoostAnimationCooldown());
-        StartCoroutine(BoostAnimationCooldown());
+        if(withParticles)
+        {
+            psBoost.Play();
+        }
 
         Vector3 currentEulerRotation = transform.rotation.eulerAngles;
         bool right = currentEulerRotation.z > 180;
@@ -83,12 +86,19 @@ public class HangGliderAnimationController : MonoBehaviour
         }
     }
 
+    public void PlayEndBehaviourAnimation()
+    {
+        endBehaviourAnimator.enabled = true;
+    }
+
     IEnumerator BoostAnimation(float animationTime, bool right = true)
     {
         if(animationTime == 0)
         {
             yield return null;
         }
+
+        isBoostAnimationReady = false;
 
         float dt = 0;
         while(dt <= animationTime)
@@ -102,19 +112,8 @@ public class HangGliderAnimationController : MonoBehaviour
         }
 
         transform.rotation = Quaternion.Euler(0, 0, 0);
-        yield return null;
-    }
+        isBoostAnimationReady = true;
 
-    IEnumerator BoostAnimationCooldown()
-    {
-        boostAnimationCooldown = 0.2f;
-        while(boostAnimationCooldown > 0)
-        {
-            boostAnimationCooldown -= Time.deltaTime;
-            yield return new WaitForEndOfFrame();
-        }
-
-        boostAnimationCooldown = 0;
         yield return null;
     }
 }

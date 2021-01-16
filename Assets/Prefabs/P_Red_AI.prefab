@@ -9627,6 +9627,7 @@ GameObject:
   - component: {fileID: 5244215553858156617}
   - component: {fileID: 4103909199507117600}
   - component: {fileID: 9165865505106660899}
+  - component: {fileID: 204859547}
   m_Layer: 10
   m_Name: P_Red_AI
   m_TagString: AI
@@ -9740,9 +9741,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27b8a92e8ca4a664791e010c6f857e00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  obstacleDetectionDistance: 10
+  obstacleDetectionDistance: 5
   releaseThreshold: 5
-  diveThreshold: 140
+  diveThreshold: 170
   lmObstaclesToAvoid:
     serializedVersion: 2
     m_Bits: 4096
@@ -9791,6 +9792,25 @@ MonoBehaviour:
   - {fileID: 3410256182716451551}
   - {fileID: 2388863319869893173}
   psBoost: {fileID: 4101533474116452910}
+--- !u!95 &204859547
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5053872455910465262}
+  m_Enabled: 0
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: ce9a633e4b2dcbd49abc68828f19ea59, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &5119846061536624849
 GameObject:
   m_ObjectHideFlags: 0

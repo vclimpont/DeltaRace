@@ -20,9 +20,12 @@ public class HangGliderComponent : MonoBehaviour
     public HangGliderAnimationController ac { get; private set; }
 
     private Vector3 baseScale;
+    private bool reachedEndPosition;
 
     public bool isPropelled { get; set; }
     public bool rotateX { get; set; }
+    public bool HasEnded { get; set; }
+    public Vector3 EndPosition { get; set; }
 
     void Awake()
     {
@@ -36,10 +39,34 @@ public class HangGliderComponent : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(reachedEndPosition)
+        {
+            return;
+        }
+
         ac.StretchOnVelocityValue(baseScale, minSpeedZ, maxSpeedZ);
         ac.RotateOnVelocityValue(!isPropelled && rotateX);
         ac.ShineOnVelocityValue(minSpeedZ, maxSpeedZ);
         ac.EmitTrailsParticles();
+    }
+
+    public void PlayEndBehaviour()
+    {
+        if (reachedEndPosition)
+        {
+            return;
+        }
+
+        if ((transform.position - EndPosition).magnitude > 5f)
+        {
+            MoveTowards(EndPosition);
+        }
+        else
+        {
+            reachedEndPosition = true;
+            rb.velocity = Vector3.zero;
+            ac.PlayEndBehaviourAnimation();
+        }
     }
 
     public void Release()
@@ -121,7 +148,7 @@ public class HangGliderComponent : MonoBehaviour
         Vector3 v = rb.velocity;
         rb.velocity = new Vector3(v.x, v.y, v.z / 1.5f);
 
-        ac.PlayBoostAnimation(propulsionTimer);
+        ac.PlayBoostAnimation();
         isPropelled = true;
     }
 

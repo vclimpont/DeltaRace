@@ -9524,6 +9524,7 @@ GameObject:
   - component: {fileID: 5244215553858156617}
   - component: {fileID: 4103909199507117600}
   - component: {fileID: 4956489583208615694}
+  - component: {fileID: 18651382}
   m_Layer: 10
   m_Name: P_Blue_AI
   m_TagString: AI
@@ -9639,7 +9640,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   obstacleDetectionDistance: 10
   releaseThreshold: 5
-  diveThreshold: 140
+  diveThreshold: 170
   lmObstaclesToAvoid:
     serializedVersion: 2
     m_Bits: 4096
@@ -9688,6 +9689,25 @@ MonoBehaviour:
   - {fileID: 2277938499745229442}
   - {fileID: 5446885886305727894}
   psBoost: {fileID: 1396581239863659256}
+--- !u!95 &18651382
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5053872455910465262}
+  m_Enabled: 0
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: ce9a633e4b2dcbd49abc68828f19ea59, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &5101380705229625287
 GameObject:
   m_ObjectHideFlags: 0

@@ -21,6 +21,11 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (hgc.HasEnded)
+        {
+            return;
+        }
+
         cameraController.EmitSpeedParticles(rb.velocity.magnitude >= speedThresholdToEmitWindParticles);
 
         if(hgc.isPropelled)
@@ -34,12 +39,17 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
-        if(hgc.isPropelled)
+        if (hgc.HasEnded)
+        {
+            hgc.PlayEndBehaviour();
+            return;
+        }
+
+        if (hgc.isPropelled)
         {
             return;
         }
 
-        //hgc.Turn(ic.HorizontalMovement);
         hgc.ApplyHorizontalMovement(ic.HorizontalMovement);
 
         if(!ic.IsDiving)

@@ -4873,6 +4873,7 @@ GameObject:
   - component: {fileID: 5244215553858156617}
   - component: {fileID: 4103909199507117600}
   - component: {fileID: 801862155238863067}
+  - component: {fileID: 1166461072}
   m_Layer: 10
   m_Name: P_Green_AI
   m_TagString: AI
@@ -4988,7 +4989,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   obstacleDetectionDistance: 10
   releaseThreshold: 5
-  diveThreshold: 140
+  diveThreshold: 170
   lmObstaclesToAvoid:
     serializedVersion: 2
     m_Bits: 4096
@@ -5009,10 +5010,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92c2ea5b73a40a84993955921e729536, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minSpeedZ: 25
-  maxSpeedZ: 30
-  minSpeedY: 25
-  maxSpeedY: 15
+  minSpeedZ: 10
+  maxSpeedZ: 50
+  minSpeedY: 10
+  maxSpeedY: 20
   releaseSpeedFactor: 0.75
   diveSpeedFactor: 1.5
   turnSpeed: 30
@@ -5037,6 +5038,25 @@ MonoBehaviour:
   - {fileID: 3606393885804807784}
   - {fileID: 7864741836504729320}
   psBoost: {fileID: 3494254470413856332}
+--- !u!95 &1166461072
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5053872455910465262}
+  m_Enabled: 0
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: ce9a633e4b2dcbd49abc68828f19ea59, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &5949029978669688992
 GameObject:
   m_ObjectHideFlags: 0

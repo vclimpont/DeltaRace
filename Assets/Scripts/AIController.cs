@@ -17,11 +17,13 @@ public class AIController : MonoBehaviour
     private enum MovementDirection { Up, Down, Left, Right, Forward }
 
     private HangGliderComponent hgc;
+    private Rigidbody rb;
     private State currentState;
 
     void Awake()
     {
         hgc = GetComponent<HangGliderComponent>();
+        rb = GetComponent<Rigidbody>();
 
         currentState = State.Release;
     }
@@ -34,6 +36,11 @@ public class AIController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(hgc.HasEnded)
+        {
+            return;
+        }
+
         if(transform.position.y <= releaseThreshold)
         {
             currentState = State.Release;
@@ -57,7 +64,13 @@ public class AIController : MonoBehaviour
 
     void FixedUpdate()
     {
-        if(hgc.isPropelled)
+        if (hgc.HasEnded)
+        {
+            hgc.PlayEndBehaviour();
+            return;
+        }
+
+        if (hgc.isPropelled)
         {
             return;
         }
