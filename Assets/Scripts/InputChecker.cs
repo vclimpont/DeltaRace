@@ -21,7 +21,7 @@ public class InputChecker
         }
     }
 
-    public void CheckHorizontalMovement(Vector3 playerPosition)
+    public void CheckHorizontalMovement()
     {
         if (IsDiving)
         {
@@ -50,7 +50,7 @@ public class InputChecker
             }
             else
             {
-                throw new System.Exception("Player is diving with no inputs triggered");
+                return;
             }
 
             HorizontalMovement = Mathf.Clamp(deltaPosition.x / (Screen.width), -0.5f, 0.5f);

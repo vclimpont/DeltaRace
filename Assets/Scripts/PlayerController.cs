@@ -34,7 +34,6 @@ public class PlayerController : MonoBehaviour
         }
 
         ic.CheckDive();
-        ic.CheckHorizontalMovement(transform.position);
     }
 
     void FixedUpdate()
@@ -50,6 +49,7 @@ public class PlayerController : MonoBehaviour
             return;
         }
 
+        ic.CheckHorizontalMovement();
         hgc.ApplyHorizontalMovement(ic.HorizontalMovement);
 
         if(!ic.IsDiving)
