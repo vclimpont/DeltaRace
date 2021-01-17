@@ -97,7 +97,7 @@ public class LevelManager : MonoBehaviour
         
         if(RacePosition == 1)
         {
-            SaveManager.Instance.state.MaxLevel+=100;
+            SaveManager.Instance.state.MaxLevel++;
             SaveManager.Instance.Save();
         }
     }
