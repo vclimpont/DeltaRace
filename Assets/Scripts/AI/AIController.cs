@@ -20,6 +20,7 @@ public class AIController : MonoBehaviour
     private HangGliderComponent hgc;
     private State currentState;
     private float speedMultiplier;
+    private LevelManager lm;
 
     void Awake()
     {
@@ -28,13 +29,15 @@ public class AIController : MonoBehaviour
 
     void Start()
     {
+        lm = LevelManager.Instance;
+
         hgc.rotateX = false;
 
         currentState = State.Release;
 
-        if (LevelManager.Instance != null)
+        if (lm != null)
         {
-            speedMultiplier = 1f + Mathf.Clamp(0.01f * LevelManager.Instance.CurrentLevel, 0f, maxSpeedMultiplier);
+            speedMultiplier = 1f + Mathf.Clamp(0.01f * lm.CurrentLevel, 0f, maxSpeedMultiplier);
         }
     }
 

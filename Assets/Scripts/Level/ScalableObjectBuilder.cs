@@ -9,10 +9,13 @@ public class ScalableObjectBuilder : MonoBehaviour
     [SerializeField] [Range(0f, 1f)] private float scaleRatio = 0f;
     [SerializeField] [Range(0f, 1f)] private float maxLevelMultiplier = 0f;
 
+    private LevelManager lm;
+
     void Start()
     {
-        minSize /= (1f + Mathf.Clamp(LevelManager.Instance.CurrentLevel * 0.02f, 0f, maxLevelMultiplier));
-        minScaleAmplitude /= (1f + Mathf.Clamp(LevelManager.Instance.CurrentLevel * 0.02f, 0f, maxLevelMultiplier));
+        lm = LevelManager.Instance;
+        minSize /= (1f + Mathf.Clamp(lm.CurrentLevel * 0.02f, 0f, maxLevelMultiplier));
+        minScaleAmplitude /= (1f + Mathf.Clamp(lm.CurrentLevel * 0.02f, 0f, maxLevelMultiplier));
     }
 
     public void SetScalableObject(ScalableObjectComponent so)

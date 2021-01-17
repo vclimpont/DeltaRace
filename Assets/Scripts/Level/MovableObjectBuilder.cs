@@ -9,10 +9,14 @@ public class MovableObjectBuilder : MonoBehaviour
     [SerializeField][Range(0f, 1f)] private float sphericalRatio = 0f;
     [SerializeField][Range(0f, 1f)] private float maxLevelMultiplier = 0f;
 
+    private LevelManager lm;
+
     void Start()
     {
-        maxSpeed *= (1f + Mathf.Clamp(LevelManager.Instance.CurrentLevel * 0.02f, 0f, maxLevelMultiplier));
-        maxAmplitude *= (1f + Mathf.Clamp(LevelManager.Instance.CurrentLevel * 0.02f, 0f, maxLevelMultiplier));
+        lm = LevelManager.Instance;
+
+        maxSpeed *= (1f + Mathf.Clamp(lm.CurrentLevel * 0.02f, 0f, maxLevelMultiplier));
+        maxAmplitude *= (1f + Mathf.Clamp(lm.CurrentLevel * 0.02f, 0f, maxLevelMultiplier));
     }
 
     public void SetMovableObject(MovableObjectComponent mo)

@@ -12,6 +12,7 @@ public class CameraController : MonoBehaviour
     private Vector3 cameraDistanceFromPlayer;
     private bool canShake;
     private ParticleSystem psCamera;
+    private bool playParticles;
 
     void Awake()
     {
@@ -22,6 +23,11 @@ public class CameraController : MonoBehaviour
     {
         cameraDistanceFromPlayer = transform.position - playerTransform.position;
         canShake = true;
+
+        if(LevelManager.Instance != null)
+        {
+            playParticles = !LevelManager.Instance.LowSettings;
+        }
     }
 
     void FixedUpdate()
@@ -45,6 +51,11 @@ public class CameraController : MonoBehaviour
 
     public void EmitSpeedParticles(bool emit)
     {
+        if(!playParticles)
+        {
+            return;
+        }
+
         if (emit && !psCamera.isPlaying)
         {
             psCamera.Play();

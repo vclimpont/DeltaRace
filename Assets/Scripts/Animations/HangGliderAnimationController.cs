@@ -12,6 +12,7 @@ public class HangGliderAnimationController : MonoBehaviour
     private MeshRenderer mesh;
     private Animator endBehaviourAnimator;
     private bool isBoostAnimationReady;
+    private bool playHGParticles;
 
     void Awake()
     {
@@ -19,6 +20,14 @@ public class HangGliderAnimationController : MonoBehaviour
         mesh = GetComponent<MeshRenderer>();
         endBehaviourAnimator = GetComponent<Animator>();
         isBoostAnimationReady = true;
+    }
+
+    void Start()
+    {
+        if(LevelManager.Instance != null)
+        {
+            playHGParticles = !LevelManager.Instance.LowSettings;
+        }
     }
 
     public void RotateOnVelocityValue(bool rotateX = true)
@@ -57,7 +66,7 @@ public class HangGliderAnimationController : MonoBehaviour
             return;
         }
 
-        if(playParticles)
+        if(playParticles && playHGParticles)
         {
             psBoost.Play();
         }
@@ -76,7 +85,7 @@ public class HangGliderAnimationController : MonoBehaviour
             return;
         }
 
-        if(!playParticles)
+        if(!playHGParticles || !playParticles)
         {
             if(psTrails[0].isPlaying || psTrails[1].isPlaying)
             {

@@ -43,6 +43,7 @@ GameObject:
   - component: {fileID: 8308807190946996424}
   - component: {fileID: 3585362104016602838}
   - component: {fileID: 1226138819322670835}
+  - component: {fileID: 4151276322014028802}
   m_Layer: 0
   m_Name: P_Fan
   m_TagString: Fan
@@ -93,6 +94,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   propulsionForce: 400
   direction: {x: 0, y: 1, z: 0}
+--- !u!114 &4151276322014028802
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3495825805595617243}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d380f696168fb14479ec936670dbef2e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  windParticles: {fileID: 4859401667590386383}
 --- !u!1 &5332661634664477750
 GameObject:
   m_ObjectHideFlags: 0

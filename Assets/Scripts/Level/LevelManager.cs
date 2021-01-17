@@ -9,8 +9,11 @@ public class LevelManager : MonoBehaviour
     [SerializeField] private Transform endRaceTransform = null;
 
     private float raceLength;
+    private SaveManager sm;
+
     public enum LevelState { InRace, EndRace }
 
+    public bool LowSettings { get; private set; }
     public int CurrentLevel { get; private set; }
     public int Progression { get; private set; }
     public int Speed { get; private set; }
@@ -25,10 +28,12 @@ public class LevelManager : MonoBehaviour
     void Awake()
     {
         Instance = this;
+        sm = SaveManager.Instance;
         CurrentState = LevelState.InRace;
 
-        CurrentLevel = SaveManager.Instance.state.MaxLevel;
-        HighScore = SaveManager.Instance.state.HighScore;
+        CurrentLevel = sm.state.MaxLevel;
+        HighScore = sm.state.HighScore;
+        LowSettings = sm.state.LowSettings;
         Progression = 0;
         Speed = 0;
         RacePosition = AIs.Length + 1;
@@ -91,18 +96,18 @@ public class LevelManager : MonoBehaviour
         CurrentState = LevelState.EndRace;
         
 
-        if(GetFinalScore() > SaveManager.Instance.state.HighScore)
+        if(GetFinalScore() > sm.state.HighScore)
         {
             NewRecord = true;
-            SaveManager.Instance.state.HighScore = GetFinalScore();
+            sm.state.HighScore = GetFinalScore();
             HighScore = GetFinalScore();
-            SaveManager.Instance.Save();
+            sm.Save();
         }
         
         if(RacePosition == 1)
         {
-            SaveManager.Instance.state.MaxLevel++;
-            SaveManager.Instance.Save();
+            sm.state.MaxLevel++;
+            sm.Save();
         }
     }
 }
