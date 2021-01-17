@@ -12,6 +12,8 @@ public class AIController : MonoBehaviour
     [SerializeField] private int targetBoostIndex = 0;
     [SerializeField][Range(0f, 1f)] private float maxSpeedMultiplier = 0;
 
+    [SerializeField]private Transform playerTransform = null;
+
     private enum State { Release, Dive, SeekBoosts }
     private enum MovementDirection { Up, Down, Left, Right, Forward }
 
@@ -44,7 +46,9 @@ public class AIController : MonoBehaviour
             return;
         }
 
-        if(transform.position.y <= releaseThreshold)
+        SetPlayParticles();
+
+        if (transform.position.y <= releaseThreshold)
         {
             currentState = State.Release;
         }
@@ -92,6 +96,18 @@ public class AIController : MonoBehaviour
             default:
                 break;
         }
+    }
+
+    void SetPlayParticles()
+    {
+        if(playerTransform == null)
+        {
+            return;
+        }
+
+        float z = transform.position.z;
+        float zPlayer = playerTransform.position.z;
+        hgc.PlayParticles = z >= zPlayer && z - zPlayer <= 100f; 
     }
 
     void SeekBoosts()

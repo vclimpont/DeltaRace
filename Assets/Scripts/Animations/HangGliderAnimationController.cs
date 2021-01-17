@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class HangGliderAnimationController : MonoBehaviour
@@ -46,14 +45,19 @@ public class HangGliderAnimationController : MonoBehaviour
         mesh.material.SetColor("_EmissionColor", matColor * dtI);
     }
 
-    public void PlayBoostAnimation(bool withParticles = true)
+    public void PlayBoostAnimation(bool playParticles = true)
     {
+        if(psBoost == null)
+        {
+            return;
+        }
+
         if(!isBoostAnimationReady)
         {
             return;
         }
 
-        if(withParticles)
+        if(playParticles)
         {
             psBoost.Play();
         }
@@ -65,10 +69,20 @@ public class HangGliderAnimationController : MonoBehaviour
         StartCoroutine(BoostAnimation(0.5f, right));
     }
 
-    public void EmitTrailsParticles()
+    public void EmitTrailsParticles(bool playParticles = true)
     {
         if (psTrails == null || psTrails.Length != 2)
         {
+            return;
+        }
+
+        if(!playParticles)
+        {
+            if(psTrails[0].isPlaying || psTrails[1].isPlaying)
+            {
+                psTrails[0].Stop();
+                psTrails[1].Stop();
+            }
             return;
         }
 

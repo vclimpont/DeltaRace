@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class RingAnimation : MonoBehaviour
 {
@@ -8,7 +6,7 @@ public class RingAnimation : MonoBehaviour
 
     void OnTriggerEnter(Collider collider)
     {
-        if (collider.CompareTag("Player") || collider.CompareTag("AI"))
+        if (collider.CompareTag("Player") || (collider.CompareTag("AI") && collider.GetComponent<HangGliderComponent>().PlayParticles))
         {
             psBurst.Play();
         }

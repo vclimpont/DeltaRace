@@ -202,7 +202,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: SCORE
+  m_Text: FINAL SCORE
 --- !u!222 &19377948
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -19951,6 +19951,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5244215553858156617, guid: 0a8effac25951a146b14b9907baba2bf,
+        type: 3}
+      propertyPath: playerTransform
+      value: 
+      objectReference: {fileID: 864736827}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0a8effac25951a146b14b9907baba2bf, type: 3}
 --- !u!1 &515492802
@@ -20143,6 +20148,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5244215553858156617, guid: e893d0444c4c9074e8a33d836c8f2b1c,
+        type: 3}
+      propertyPath: playerTransform
+      value: 
+      objectReference: {fileID: 864736827}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e893d0444c4c9074e8a33d836c8f2b1c, type: 3}
 --- !u!1 &551298670
@@ -21113,6 +21123,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5244215553858156617, guid: 1a140e0a67a04a94c8f2ce5ee8393504,
+        type: 3}
+      propertyPath: playerTransform
+      value: 
+      objectReference: {fileID: 864736827}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1a140e0a67a04a94c8f2ce5ee8393504, type: 3}
 --- !u!1 &1157831168
@@ -80683,16 +80698,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 6545889519752984558, guid: bfdf0445ee8f4064c85a03b494a304be,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6545889519752984558, guid: bfdf0445ee8f4064c85a03b494a304be,
-        type: 3}
-      propertyPath: volumeLayer.m_Bits
-      value: 4294967295
-      objectReference: {fileID: 0}
     - target: {fileID: 6545889521083631504, guid: bfdf0445ee8f4064c85a03b494a304be,
         type: 3}
       propertyPath: m_LocalPosition.x

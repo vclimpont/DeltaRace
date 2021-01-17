@@ -17,7 +17,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4644103656089223528
 Transform:
   m_ObjectHideFlags: 0
@@ -5038,7 +5038,7 @@ MonoBehaviour:
   psTrails:
   - {fileID: 3606393885804807784}
   - {fileID: 7864741836504729320}
-  psBoost: {fileID: 3494254470413856332}
+  psBoost: {fileID: 0}
 --- !u!95 &1166461072
 Animator:
   serializedVersion: 3
