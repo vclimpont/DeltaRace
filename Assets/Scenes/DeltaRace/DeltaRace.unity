@@ -693,8 +693,9 @@ GameObject:
   - component: {fileID: 296628510}
   - component: {fileID: 296628512}
   - component: {fileID: 296628511}
+  - component: {fileID: 296628513}
   m_Layer: 5
-  m_Name: Text_HighscoreTitle (1)
+  m_Name: Text_NewRecord
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -760,6 +761,25 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 296628509}
   m_CullTransparentMesh: 0
+--- !u!95 &296628513
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 296628509}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: b2574f77939201241bfae54469f1911b, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &385795369
 GameObject:
   m_ObjectHideFlags: 0
@@ -22229,6 +22249,7 @@ GameObject:
   - component: {fileID: 1439798813}
   - component: {fileID: 1439798815}
   - component: {fileID: 1439798814}
+  - component: {fileID: 1439798816}
   m_Layer: 5
   m_Name: Text_Score
   m_TagString: Untagged
@@ -22287,7 +22308,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 0
+  m_Text: 23500
 --- !u!222 &1439798815
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -22296,6 +22317,25 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1439798812}
   m_CullTransparentMesh: 0
+--- !u!95 &1439798816
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1439798812}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: fd07f29a8a6825e45b01921805d94d09, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1465711713
 GameObject:
   m_ObjectHideFlags: 0
@@ -80469,6 +80509,7 @@ MonoBehaviour:
   textPGRacePosition: {fileID: 100780131}
   textPGScore: {fileID: 112819144}
   textPGHighScore: {fileID: 385795371}
+  textPGNewRecord: {fileID: 296628511}
   textPGNextLevelButton: {fileID: 707022245}
 --- !u!1 &2078795316
 GameObject:

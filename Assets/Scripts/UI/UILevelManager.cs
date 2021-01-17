@@ -19,6 +19,7 @@ public class UILevelManager : MonoBehaviour
     [SerializeField] private Text textPGRacePosition = null;
     [SerializeField] private Text textPGScore = null;
     [SerializeField] private Text textPGHighScore = null;
+    [SerializeField] private Text textPGNewRecord = null;
     [SerializeField] private Text textPGNextLevelButton = null;
 
     private LevelManager lmanager;
@@ -61,8 +62,14 @@ public class UILevelManager : MonoBehaviour
             textPGRacePosition.text = lmanager.RacePosition + " / " + lmanager.RacersSize;
             textPGScore.text = "" + lmanager.GetFinalScore();
             textPGHighScore.text = "" + lmanager.HighScore;
+            textPGNewRecord.gameObject.SetActive(lmanager.NewRecord);
             raceHasEnded = true;
         }
 
+    }
+
+    public void PlayScoreAnimation()
+    {
+        textScore.GetComponent<Animator>().SetTrigger("Scale");
     }
 }

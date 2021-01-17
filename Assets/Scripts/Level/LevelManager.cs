@@ -20,6 +20,8 @@ public class LevelManager : MonoBehaviour
     public int RacersSize { get; private set; }
     public LevelState CurrentState { get; private set; } 
 
+    public bool NewRecord { get; private set; }
+
     void Awake()
     {
         Instance = this;
@@ -32,6 +34,7 @@ public class LevelManager : MonoBehaviour
         RacePosition = AIs.Length + 1;
         Score = 0;
         RacersSize = RacePosition;
+        NewRecord = false;
         raceLength = endRaceTransform.position.z - player.transform.position.z;
     }
 
@@ -90,6 +93,7 @@ public class LevelManager : MonoBehaviour
 
         if(GetFinalScore() > SaveManager.Instance.state.HighScore)
         {
+            NewRecord = true;
             SaveManager.Instance.state.HighScore = GetFinalScore();
             HighScore = GetFinalScore();
             SaveManager.Instance.Save();

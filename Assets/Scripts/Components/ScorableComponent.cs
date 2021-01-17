@@ -20,6 +20,7 @@ public class ScorableComponent : MonoBehaviour
         {
             LevelManager.Instance.AddScore(Score);
             AudioManager.Instance.Play("Ring");
+            UILevelManager.Instance.PlayScoreAnimation();
         }
     }
 }
