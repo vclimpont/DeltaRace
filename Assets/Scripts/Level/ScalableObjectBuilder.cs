@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class ScalableObjectBuilder : MonoBehaviour
 {
@@ -9,6 +7,13 @@ public class ScalableObjectBuilder : MonoBehaviour
     [SerializeField] [Range(0.1f, 1f)] private float minScaleAmplitude = 0.1f;
     [SerializeField] [Range(0.1f, 1f)] private float maxScaleAmplitude = 0.1f;
     [SerializeField] [Range(0f, 1f)] private float scaleRatio = 0f;
+    [SerializeField] [Range(0f, 1f)] private float maxLevelMultiplier = 0f;
+
+    void Start()
+    {
+        minSize /= (1f + Mathf.Clamp(LevelManager.Instance.CurrentLevel * 0.02f, 0f, maxLevelMultiplier));
+        minScaleAmplitude /= (1f + Mathf.Clamp(LevelManager.Instance.CurrentLevel * 0.02f, 0f, maxLevelMultiplier));
+    }
 
     public void SetScalableObject(ScalableObjectComponent so)
     {

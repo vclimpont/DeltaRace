@@ -33,7 +33,6 @@ public class AIController : MonoBehaviour
         if (LevelManager.Instance != null)
         {
             speedMultiplier = 1f + Mathf.Clamp(0.01f * LevelManager.Instance.CurrentLevel, 0f, maxSpeedMultiplier);
-            Debug.Log(speedMultiplier);
         }
     }
 

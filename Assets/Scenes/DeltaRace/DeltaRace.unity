@@ -20518,6 +20518,7 @@ MonoBehaviour:
   minAmplitude: 0
   maxAmplitude: 5
   sphericalRatio: 0.75
+  maxLevelMultiplier: 1
 --- !u!114 &746191027
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20535,6 +20536,7 @@ MonoBehaviour:
   minScaleAmplitude: 0.3
   maxScaleAmplitude: 0.6
   scaleRatio: 0.33
+  maxLevelMultiplier: 1
 --- !u!1 &821633842
 GameObject:
   m_ObjectHideFlags: 0
