@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class PropulsorComponent : MonoBehaviour
 {
@@ -23,15 +21,18 @@ public class PropulsorComponent : MonoBehaviour
     private void OnTriggerEnter(Collider collider)
     {
         HangGliderComponent hgc = collider.GetComponent<HangGliderComponent>();
+
+        if (collider.CompareTag("Player"))
+        {
+            AudioManager.Instance.Play("Fan");
+            collider.GetComponent<PlayerController>().ShakeCamera();
+        }
+
         if(hgc != null)
         {
             hgc.StartPropelling();
         }
 
-        if (collider.CompareTag("Player"))
-        {
-            collider.GetComponent<PlayerController>().ShakeCamera();
-        }
     }
 
     private void OnTriggerStay(Collider collider)

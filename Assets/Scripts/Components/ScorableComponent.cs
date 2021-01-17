@@ -19,6 +19,7 @@ public class ScorableComponent : MonoBehaviour
         if(collider.CompareTag("Player"))
         {
             LevelManager.Instance.AddScore(Score);
+            AudioManager.Instance.Play("Ring");
         }
     }
 }
