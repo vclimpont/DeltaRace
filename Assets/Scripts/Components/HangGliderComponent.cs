@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class HangGliderComponent : MonoBehaviour
@@ -109,10 +108,11 @@ public class HangGliderComponent : MonoBehaviour
         rb.velocity = new Vector3(vx, v.y, v.z);
     }
 
-    public void MoveTowards(Vector3 position)
+    public void MoveTowards(Vector3 position, float speedMultiplier = 1.0f)
     {
         Vector3 targetDirection = (position - transform.position).normalized;
         float speed = position.y < transform.position.y ? maxSpeedZ : minSpeedZ;
+        speed *= speedMultiplier;
         rb.velocity = targetDirection * speed;
     }
 

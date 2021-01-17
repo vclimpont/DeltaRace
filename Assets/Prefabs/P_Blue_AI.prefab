@@ -9649,6 +9649,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 24576
   targetBoostIndex: 0
+  maxSpeedMultiplier: 1
 --- !u!114 &4103909199507117600
 MonoBehaviour:
   m_ObjectHideFlags: 0

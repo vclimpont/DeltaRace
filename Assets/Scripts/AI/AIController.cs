@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class AIController : MonoBehaviour
 {
@@ -12,25 +10,31 @@ public class AIController : MonoBehaviour
     [SerializeField] private float sphereBoostsDetectionRadius = 0f;
     [SerializeField] private LayerMask lmBoostsToSeek;
     [SerializeField] private int targetBoostIndex = 0;
+    [SerializeField][Range(0f, 1f)] private float maxSpeedMultiplier = 0;
 
     private enum State { Release, Dive, SeekBoosts }
     private enum MovementDirection { Up, Down, Left, Right, Forward }
 
     private HangGliderComponent hgc;
-    private Rigidbody rb;
     private State currentState;
+    private float speedMultiplier;
 
     void Awake()
     {
         hgc = GetComponent<HangGliderComponent>();
-        rb = GetComponent<Rigidbody>();
-
-        currentState = State.Release;
     }
 
     void Start()
     {
         hgc.rotateX = false;
+
+        currentState = State.Release;
+
+        if (LevelManager.Instance != null)
+        {
+            speedMultiplier = 1f + Mathf.Clamp(0.01f * LevelManager.Instance.CurrentLevel, 0f, maxSpeedMultiplier);
+            Debug.Log(speedMultiplier);
+        }
     }
 
     // Update is called once per frame
@@ -97,7 +101,7 @@ public class AIController : MonoBehaviour
 
         if(boosts.Length > targetBoostIndex)
         {
-            hgc.MoveTowards(boosts[targetBoostIndex].transform.position);
+            hgc.MoveTowards(boosts[targetBoostIndex].transform.position, speedMultiplier);
         }
         else
         {
